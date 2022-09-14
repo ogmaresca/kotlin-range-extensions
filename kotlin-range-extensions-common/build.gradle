@@ -1,0 +1,18 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+apply plugin: 'kotlin-platform-common'
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlinVersion"
+}
+
+tasks.test {
+    testLogging {
+        displayGranularity = 2
+        events = [TestLogEvent.STARTED, TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED, TestLogEvent.STANDARD_OUT, TestLogEvent.STANDARD_ERROR]
+        showCauses = true
+        showExceptions = true
+        showStackTraces = true
+        showStandardStreams = true
+    }
+}

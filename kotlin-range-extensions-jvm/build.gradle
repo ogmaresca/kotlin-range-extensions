@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'java-library'
+apply plugin: 'kotlin-platform-jvm'
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    testImplementation "org.assertj:assertj-core:$assertJVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+    implementation project(':kotlin-range-extensions-common')
+}
