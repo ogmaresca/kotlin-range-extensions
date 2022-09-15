@@ -16,16 +16,13 @@ import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
 object TODO {
-	val localDate = LocalDate.MIN..LocalDate.MAX
 	val localTime = LocalTime.MIN..LocalTime.MAX
 	val localDateTime = LocalDateTime.MIN..LocalDateTime.MAX
-	val instant = Instant.MIN..Instant.MAX
 	// If endInclusive.offset != start.offset, then convert offset to start zone
 	val offsetDateTime = OffsetDateTime.MIN..OffsetDateTime.MAX
 	val zoneOffset = ZoneOffset.MIN..ZoneOffset.MAX
 	// If endInclusive.zone != start.zone, then convert end to start zone
 	val zonedDateTime = ZonedDateTime.now()..ZonedDateTime.now()
-	val duration = Duration.ZERO..Duration.ZERO
 	val period = Period.ZERO..Period.ZERO
 	val monthDay = MonthDay.now()..MonthDay.now()
 	val year = Year.MIN_VALUE..Year.MAX_VALUE

@@ -3,7 +3,7 @@ package com.ogm.kotlin.range.extensions
 import kotlin.jvm.JvmInline
 
 @JvmInline
-value class UShortProgression private constructor(
+value class UShortProgression internal constructor(
 	private val value: UIntProgression,
 ) : Iterable<UShort> {
 	val first get() = value.first.toUShort()
@@ -20,16 +20,11 @@ value class UShortProgression private constructor(
 	override fun toString() = value.toString()
 
 	companion object {
-		/**
-		 * Creates UShortProgression within the specified bounds of a closed range.
-		 *
-		 * The progression starts with the [rangeStart] value and goes toward the [rangeEnd] value not excluding it, with the specified [step].
-		 * In order to go backwards the [step] must be negative.
-		 *
-		 * [step] must be greater than `Short.MIN_VALUE` and not equal to zero.
-		 */
 		fun fromClosedRange(rangeStart: UShort, rangeEnd: UShort, step: Short) =
 			UShortProgression(UIntProgression.fromClosedRange(rangeStart.toUInt(), rangeEnd.toUInt(), step.toInt()))
+
+		fun fromClosedRange(range: ClosedRange<UShort>, step: Short) =
+			fromClosedRange(range.start, range.endInclusive, step)
 	}
 
 	@JvmInline

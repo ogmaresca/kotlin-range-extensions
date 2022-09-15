@@ -25,7 +25,20 @@ fun ClosedRange<UShort>.toUShortRange(): UShortRange = when (this) {
 	else -> UShortRange(start, endInclusive)
 }
 
-fun ClosedRange<UInt>.toUShortRange() = UShortRange(start.toUShort(), endInclusive.toUShort())
+fun ClosedRange<UInt>.toUShortRange() = when (this) {
+	is UIntRange -> UShortRange(this)
+	else -> UShortRange(start.toUShort(), endInclusive.toUShort())
+}
+
+fun ClosedRange<Double>.toDoubleRange(): ClosedFloatingPointRange<Double> = when (this) {
+	is ClosedFloatingPointRange<Double> -> this
+	else -> start..endInclusive
+}
+
+fun ClosedRange<Float>.toFloatRange(): ClosedFloatingPointRange<Float> = when (this) {
+	is ClosedFloatingPointRange<Float> -> this
+	else -> start..endInclusive
+}
 
 fun ClosedRange<Char>.toCharRange(): CharRange = when (this) {
 	is CharRange -> this

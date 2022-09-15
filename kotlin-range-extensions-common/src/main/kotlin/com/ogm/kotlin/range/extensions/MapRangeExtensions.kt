@@ -15,6 +15,12 @@ fun <T : Comparable<T>> ClosedRange<T>.mapToUIntRange(block: (T) -> Int): IntRan
 fun <T : Comparable<T>> ClosedRange<T>.mapToUShortRange(block: (T) -> Int): IntRange =
 	block(start)..block(endInclusive)
 
+fun <T : Comparable<T>> ClosedRange<T>.mapToDoubleRange(block: (T) -> Double): ClosedFloatingPointRange<Double> =
+	block(start)..block(endInclusive)
+
+fun <T : Comparable<T>> ClosedRange<T>.mapToFloatRange(block: (T) -> Float): ClosedFloatingPointRange<Float> =
+	block(start)..block(endInclusive)
+
 fun <T : Comparable<T>> ClosedRange<T>.mapToCharRange(block: (T) -> Char): CharRange =
 	block(start)..block(endInclusive)
 

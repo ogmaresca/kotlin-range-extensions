@@ -1,30 +1,21 @@
 package com.ogm.kotlin.range.extensions
 
-data class UShortRange(
-	override val start: UShort,
-	override val endInclusive: UShort,
+import kotlin.jvm.JvmInline
+
+@JvmInline
+value class UShortRange internal constructor(
+	private val value: UIntRange,
 ) : ClosedRange<UShort>, Iterable<UShort> {
-	override fun isEmpty(): Boolean = start > endInclusive
+	constructor(start: UShort, endInclusive: UShort) : this(start..endInclusive)
 
-	override fun equals(other: Any?) = when (other) {
-		is UShortRange -> other.start == start && other.endInclusive == endInclusive && other.endInclusive == endInclusive
-		else -> false
-	}
-
-	override fun hashCode() = if (isEmpty()) {
-		-1
-	} else {
-		(31 * start.hashCode()) + (29 * endInclusive.hashCode())
-	}
+	override val start: UShort get() = value.first.toUShort()
+	override val endInclusive: UShort get() = value.last.toUShort()
 
 	override fun toString(): String = "$start..$endInclusive"
 
-	override fun iterator() = UShortProgression.fromClosedRange(start, endInclusive, 1).iterator()
+	override fun iterator() = UShortProgression(value).iterator()
 
 	companion object {
-		/** An empty range of values of type Long. */
 		val EMPTY = UShortRange(UShort.MAX_VALUE, UShort.MIN_VALUE)
 	}
 }
-
-operator fun UShort.rangeTo(that: UShort) = UShortRange(this, that)
