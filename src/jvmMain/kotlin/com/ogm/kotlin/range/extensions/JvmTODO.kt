@@ -1,7 +1,6 @@
 package com.ogm.kotlin.range.extensions
 
 import java.math.BigDecimal
-import java.math.BigInteger
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.MonthDay
@@ -25,7 +24,4 @@ object JvmTODO {
 	val year = Year.MIN_VALUE..Year.MAX_VALUE
 	val yearMonth = YearMonth.now()..YearMonth.now()
 	val bigDecimal = BigDecimal.ZERO..BigDecimal.TEN
-	val bigInteger = BigInteger.ZERO..BigInteger.TEN
-
-	val useBigIntegerForDateTimes = true
 }

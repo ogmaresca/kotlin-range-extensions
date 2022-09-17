@@ -4,7 +4,7 @@ repositories {
 }
 
 plugins {
-	val kotlinVersion = "1.5.32"
+	val kotlinVersion = "1.7.10"
 	val spotbugsVersion = "5.0.12"
 
 	kotlin("multiplatform") version kotlinVersion
@@ -30,7 +30,7 @@ kotlin {
 				allWarningsAsErrors = true
 				freeCompilerArgs = listOf("-java-parameters")
 				apiVersion = "1.5"
-				languageVersion = "1.5"
+				languageVersion = "1.7"
 				jvmTarget = "1.8"
 			}
 		}
