@@ -26,4 +26,6 @@ object JvmTODO {
 	val yearMonth = YearMonth.now()..YearMonth.now()
 	val bigDecimal = BigDecimal.ZERO..BigDecimal.TEN
 	val bigInteger = BigInteger.ZERO..BigInteger.TEN
+
+	val useBigIntegerForDateTimes = true
 }

@@ -3,25 +3,45 @@ package com.ogm.kotlin.range.extensions
 import java.time.LocalDate
 import java.time.Period
 
-open class LocalDateProgression protected constructor(
+class LocalDateProgression private constructor(
 	start: LocalDate,
 	endInclusive: LocalDate,
-	step: Period,
-) : AbstractProgression<LocalDate, PeriodComparableWrapper>(start, endInclusive, step.toComparable()) {
-	override fun valuePlusStep(left: LocalDate, right: PeriodComparableWrapper): LocalDate = left + right.toPeriod()
+	nonnormalizedStep: Period,
+) : AbstractToLongProgression<LocalDate, PeriodComparableWrapper>(
+	start,
+	endInclusive,
+	nonnormalizedStep.normalized().toComparable(),
+	nonnormalizedStep.days.toLong(),
+	PeriodComparableWrapper.ZERO,
+	LocalDateToLongConverter,
+) {
+	private val calculatedProgression: List<LocalDate>? by lazy {
+		val period = step.toPeriod()
+		val totalMonths = period.toTotalMonths()
 
-	override fun valueMinus(left: LocalDate, right: LocalDate): LocalDate = left - right
+		if (isEmpty() || totalMonths == 0L) {
+			null
+		} else {
+			mutableListOf<LocalDate>().apply {
+				var next = start
+				do {
+					add(next)
+					next += period
+				} while (next <= endInclusive)
+			}
+		}
+	}
 
-	override fun valueMinusStep(left: LocalDate, right: PeriodComparableWrapper): LocalDate = left - right.toPeriod()
+	override val last
+		get() = calculatedProgression?.last() ?: super.last
 
-	override fun stepMinus(left: PeriodComparableWrapper, right: PeriodComparableWrapper): PeriodComparableWrapper =
-		(left.toPeriod() - right.toPeriod()).toComparable()
+	override fun iterator() = calculatedProgression?.iterator() ?: super.iterator()
 
-	override fun valueModuloStep(left: LocalDate, right: PeriodComparableWrapper): PeriodComparableWrapper =
-		Period.ofDays((left.toEpochDay() % (left + right.toPeriod()).toEpochDay()).toInt()).toComparable()
+	private object LocalDateToLongConverter : AbstractToLongProgressionConverter<LocalDate> {
+		override fun toLong(value: LocalDate): Long = value.toEpochDay()
 
-	override fun zeroValue(): LocalDate = LocalDate.ofEpochDay(0)
-	override fun zeroStep(): PeriodComparableWrapper = PeriodComparableWrapper.ZERO
+		override fun toValue(value: Long): LocalDate = LocalDate.ofEpochDay(value)
+	}
 
 	companion object {
 		fun fromClosedRange(rangeStart: LocalDate, rangeEnd: LocalDate, step: Period) =

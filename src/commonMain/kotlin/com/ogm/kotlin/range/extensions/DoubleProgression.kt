@@ -1,18 +1,42 @@
 package com.ogm.kotlin.range.extensions
 
-@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
-open class DoubleProgression protected constructor(
+import kotlin.math.absoluteValue
+
+class DoubleProgression private constructor(
 	start: Double,
 	endInclusive: Double,
 	step: Double,
-) : AbstractProgressionSameStepType<Double>(start, endInclusive, step) {
-	override fun Double.plus(right: Double): Double = this@plus + right
+) : AbstractProgression<Double, Double>(start, step, endInclusive, 0.0) {
+	override val last = if (isEmpty()) {
+		endInclusive
+	} else if (step > 0) {
+		val diff = endInclusive - start
+		endInclusive - (diff % step)
+	} else {
+		val diff = start - endInclusive
+		endInclusive + (diff % step.absoluteValue)
+	}
 
-	override fun Double.minus(right: Double): Double = this@minus - right
+	override fun iterator() = DoubleProgressionIterator()
 
-	override fun Double.rem(right: Double): Double = this@rem % right
+	inner class DoubleProgressionIterator : DoubleIterator() {
+		private var hasNext = !isEmpty()
+		private var next = if (hasNext) first else last
 
-	override fun zero(): Double = 0.0
+		override fun hasNext() = hasNext
+
+		override fun nextDouble(): Double {
+			val value = next
+			if (value == last) {
+				if (!hasNext) throw NoSuchElementException()
+				hasNext = false
+			}
+			else {
+				next += step
+			}
+			return value
+		}
+	}
 
 	companion object {
 		fun fromClosedRange(rangeStart: Double, rangeEnd: Double, step: Double) =

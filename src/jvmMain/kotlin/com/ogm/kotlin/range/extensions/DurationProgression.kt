@@ -3,19 +3,23 @@ package com.ogm.kotlin.range.extensions
 import java.time.Duration
 import java.time.temporal.TemporalUnit
 
-@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
-open class DurationProgression protected constructor(
+class DurationProgression private constructor(
 	start: Duration,
 	endInclusive: Duration,
 	step: Duration,
-) : AbstractProgressionSameStepType<Duration>(start, endInclusive, step) {
-	override fun Duration.plus(right: Duration): Duration = this@plus.plus(right)
+) : AbstractToLongProgression<Duration, Duration>(
+	start,
+	endInclusive,
+	step,
+	step.toNanos(),
+	Duration.ZERO,
+	DurationToLongConverter,
+) {
+	private object DurationToLongConverter : AbstractToLongProgressionConverter<Duration> {
+		override fun toLong(value: Duration): Long = value.toNanos()
 
-	override fun Duration.minus(right: Duration): Duration = this@minus.minus(right)
-
-	override fun Duration.rem(right: Duration): Duration = Duration.ofNanos(toNanos() % right.toNanos())
-
-	override fun zero(): Duration = Duration.ZERO
+		override fun toValue(value: Long): Duration = Duration.ofNanos(value)
+	}
 
 	companion object {
 		fun fromClosedRange(rangeStart: Duration, rangeEnd: Duration, step: Duration) =

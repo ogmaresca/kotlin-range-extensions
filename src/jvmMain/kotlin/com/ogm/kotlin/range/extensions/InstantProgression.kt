@@ -1,31 +1,27 @@
 package com.ogm.kotlin.range.extensions
 
+import java.math.BigInteger
 import java.time.Duration
 import java.time.Instant
-import java.time.temporal.ChronoField
 import java.time.temporal.TemporalUnit
 
-open class InstantProgression protected constructor(
+class InstantProgression private constructor(
 	start: Instant,
 	endInclusive: Instant,
 	step: Duration,
-) : AbstractProgression<Instant, Duration>(start, endInclusive, step) {
-	override fun valuePlusStep(left: Instant, right: Duration): Instant = left + right
+) : AbstractToBigIntegerProgression<Instant, Duration>(
+	start,
+	endInclusive,
+	step,
+	BigInteger.valueOf(step.toNanos()),
+	Duration.ZERO,
+	InstantToBigIntegerConverter,
+) {
+	private object InstantToBigIntegerConverter : AbstractToBigIntegerProgressionConverter<Instant> {
+		override fun toBigInteger(value: Instant): BigInteger = value.toBigIntegerEpochNanos()
 
-	override fun valueMinus(left: Instant, right: Instant): Instant = left - right
-
-	override fun valueMinusStep(left: Instant, right: Duration): Instant = left - right
-
-	override fun stepMinus(left: Duration, right: Duration): Duration = left - right
-
-	override fun valueModuloStep(left: Instant, right: Duration): Duration {
-		val second = left.toEpochMilli() % right.seconds
-		val nano = left.getLong(ChronoField.NANO_OF_SECOND) % right.nano
-		return Duration.ofSeconds(second).plusNanos(nano)
+		override fun toValue(value: BigInteger): Instant = instantOfEpochNano(value)
 	}
-
-	override fun zeroValue(): Instant = Instant.ofEpochMilli(0)
-	override fun zeroStep(): Duration = Duration.ZERO
 
 	companion object {
 		fun fromClosedRange(rangeStart: Instant, rangeEnd: Instant, step: Duration) =

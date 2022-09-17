@@ -11,8 +11,7 @@ value class PeriodComparableWrapper(private val period: Period)
 	override fun compareTo(other: PeriodComparableWrapper): Int {
 		val normalized = period.normalized()
 		val otherNormalized = other.period.normalized()
-		return normalized.years.compareTo(otherNormalized.years).takeUnless { it == 0 }
-			?: normalized.months.compareTo(otherNormalized.months).takeUnless { it == 0 }
+		return normalized.toTotalMonths().compareTo(otherNormalized.toTotalMonths()).takeUnless { it == 0 }
 			?: normalized.days.compareTo(otherNormalized.days)
 	}
 	override fun toString() = period.toString()

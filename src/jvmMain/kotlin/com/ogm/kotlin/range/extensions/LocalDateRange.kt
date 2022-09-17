@@ -6,7 +6,7 @@ import java.time.Period
 data class LocalDateRange(
 	override val start: LocalDate,
 	override val endInclusive: LocalDate,
-) : Iterable<LocalDate>, ClosedRange<LocalDate> {
+) : ClosedRange<LocalDate>, Iterable<LocalDate> {
 	override fun iterator(): Iterator<LocalDate> =
 		LocalDateProgression.fromClosedRange(this, Period.ofDays(1)).iterator()
 

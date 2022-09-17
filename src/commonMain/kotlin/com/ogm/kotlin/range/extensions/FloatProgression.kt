@@ -1,18 +1,42 @@
 package com.ogm.kotlin.range.extensions
 
-@Suppress("EXTENSION_SHADOWED_BY_MEMBER")
-open class FloatProgression protected constructor(
+import kotlin.math.absoluteValue
+
+class FloatProgression private constructor(
 	start: Float,
 	endInclusive: Float,
 	step: Float,
-) : AbstractProgressionSameStepType<Float>(start, endInclusive, step) {
-	override fun Float.plus(right: Float): Float = this@plus + right
+) : AbstractProgression<Float, Float>(start, step, endInclusive, 0.0.toFloat()) {
+	override val last = if (isEmpty()) {
+		endInclusive
+	} else if (step > zeroStep) {
+		val diff = endInclusive - start
+		endInclusive - (diff % step)
+	} else {
+		val diff = start - endInclusive
+		endInclusive + (diff % step.absoluteValue)
+	}
 
-	override fun Float.minus(right: Float): Float = this@minus - right
+	override fun iterator() = FloatProgressionIterator()
 
-	override fun Float.rem(right: Float): Float = this@rem % right
+	inner class FloatProgressionIterator : FloatIterator() {
+		private var hasNext = !isEmpty()
+		private var next = if (hasNext) first else last
 
-	override fun zero(): Float = 0.0.toFloat()
+		override fun hasNext() = hasNext
+
+		override fun nextFloat(): Float {
+			val value = next
+			if (value == last) {
+				if (!hasNext) throw NoSuchElementException()
+				hasNext = false
+			}
+			else {
+				next += step
+			}
+			return value
+		}
+	}
 
 	companion object {
 		fun fromClosedRange(rangeStart: Float, rangeEnd: Float, step: Float) =
