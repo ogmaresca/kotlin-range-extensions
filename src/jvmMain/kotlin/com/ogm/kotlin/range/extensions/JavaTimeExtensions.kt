@@ -5,6 +5,8 @@ import java.time.Duration
 import java.time.Instant
 import java.time.temporal.ChronoField
 
+infix fun Instant.downTo(that: Instant) = that..this
+
 internal fun Instant.toBigIntegerEpochNanos(): BigInteger {
 	val seconds = BigInteger.valueOf(epochSecond) * NANOS_PER_SECOND
 	val nanos = getLong(ChronoField.NANO_OF_SECOND)

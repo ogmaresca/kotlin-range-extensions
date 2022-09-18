@@ -3,16 +3,16 @@ package com.ogm.kotlin.range.extensions
 import java.math.BigInteger
 import java.time.LocalDate
 
-@JvmName("reverseIfEmptyBigInteger")
-fun ClosedRange<BigInteger>.reverseIfEmpty(): BigIntegerRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyBigInteger")
+fun ClosedRange<BigInteger>.reversedIfEmpty(): BigIntegerRange = if (isEmpty()) {
+	reversed()
 } else {
 	toBigIntegerRange()
 }
 
-@JvmName("reverseIfEmptyLocalDate")
-fun ClosedRange<LocalDate>.reverseIfEmpty(): LocalDateRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyLocalDate")
+fun ClosedRange<LocalDate>.reversedIfEmpty(): LocalDateRange = if (isEmpty()) {
+	reversed()
 } else {
 	toLocalDateRange()
 }

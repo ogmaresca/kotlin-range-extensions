@@ -7,34 +7,34 @@ import java.time.LocalDate
 import java.time.Period
 import java.time.temporal.TemporalUnit
 
-@JvmName("progressionBigInteger")
-fun ClosedRange<BigInteger>.progression(step: BigInteger) =
+@JvmName("stepBigInteger")
+fun ClosedRange<BigInteger>.step(step: BigInteger) =
 	BigIntegerProgression.fromClosedRange(this, step)
-@JvmName("progressionBigInteger")
-fun ClosedRange<BigInteger>.progression(step: Long) = progression(BigInteger.valueOf(step))
+@JvmName("stepBigInteger")
+fun ClosedRange<BigInteger>.step(step: Long) = step(BigInteger.valueOf(step))
 
-@JvmName("progressionDuration")
-fun ClosedRange<Duration>.progression(step: Duration) =
+@JvmName("stepDuration")
+fun ClosedRange<Duration>.step(step: Duration) =
 	DurationProgression.fromClosedRange(this, step)
-@JvmName("progressionDuration")
-fun ClosedRange<Duration>.progression(stepSize: Long, stepUnit: TemporalUnit) =
+@JvmName("stepDuration")
+fun ClosedRange<Duration>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	DurationProgression.fromClosedRange(this, stepSize, stepUnit)
-@JvmName("progressionDuration")
-fun ClosedRange<Duration>.progression(stepUnit: TemporalUnit) =
+@JvmName("stepDuration")
+fun ClosedRange<Duration>.step(stepUnit: TemporalUnit) =
 	DurationProgression.fromClosedRange(this, stepUnit)
 
-@JvmName("progressionInstant")
-fun ClosedRange<Instant>.progression(step: Duration) =
+@JvmName("stepInstant")
+fun ClosedRange<Instant>.step(step: Duration) =
 	InstantProgression.fromClosedRange(this, step)
-@JvmName("progressionInstant")
-fun ClosedRange<Instant>.progression(stepSize: Long, stepUnit: TemporalUnit) =
+@JvmName("stepInstant")
+fun ClosedRange<Instant>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	InstantProgression.fromClosedRange(this, stepSize, stepUnit)
-@JvmName("progressionInstant")
-fun ClosedRange<Instant>.progression(stepUnit: TemporalUnit) =
+@JvmName("stepInstant")
+fun ClosedRange<Instant>.step(stepUnit: TemporalUnit) =
 	InstantProgression.fromClosedRange(this, stepUnit)
 
-@JvmName("progressionLocalDate")
-fun ClosedRange<LocalDate>.progression(step: Period) =
+@JvmName("stepLocalDate")
+fun ClosedRange<LocalDate>.step(step: Period) =
 	LocalDateProgression.fromClosedRange(this, step)
 
 // TODO support for every custom range

@@ -1,65 +1,63 @@
 package com.ogm.kotlin.range.extensions
 
-import kotlin.jvm.JvmName
-
-fun <T : Comparable<T>> ClosedRange<T>.reverseIfEmpty(): ClosedRange<T> = if (isEmpty()) {
+fun <T : Comparable<T>> ClosedRange<T>.reversedIfEmpty(): ClosedRange<T> = if (isEmpty()) {
 	endInclusive..start
 } else {
 	this
 }
 
-@JvmName("reverseIfEmptyLong")
-fun ClosedRange<Long>.reverseIfEmpty(): LongRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyLong")
+fun ClosedRange<Long>.reversedIfEmpty(): LongRange = if (isEmpty()) {
+	reversed()
 } else {
 	toLongRange()
 }
 
-@JvmName("reverseIfEmptyULong")
-fun ClosedRange<ULong>.reverseIfEmpty(): ULongRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyULong")
+fun ClosedRange<ULong>.reversedIfEmpty(): ULongRange = if (isEmpty()) {
+	reversed()
 } else {
 	toULongRange()
 }
 
-@JvmName("reverseIfEmptyInt")
-fun ClosedRange<Int>.reverseIfEmpty(): IntRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyInt")
+fun ClosedRange<Int>.reversedIfEmpty(): IntRange = if (isEmpty()) {
+	reversed()
 } else {
 	toIntRange()
 }
 
-@JvmName("reverseIfEmptyUInt")
-fun ClosedRange<UInt>.reverseIfEmpty(): UIntRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyUInt")
+fun ClosedRange<UInt>.reversedIfEmpty(): UIntRange = if (isEmpty()) {
+	reversed()
 } else {
 	toUIntRange()
 }
 
-@JvmName("reverseIfEmptyUShort")
-fun ClosedRange<UShort>.reverseIfEmpty(): UShortRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyUShort")
+fun ClosedRange<UShort>.reversedIfEmpty(): UShortRange = if (isEmpty()) {
+	reversed()
 } else {
 	toUShortRange()
 }
 
-@JvmName("reverseIfEmptyDouble")
-fun ClosedRange<Double>.reverseIfEmpty(): ClosedFloatingPointRange<Double> = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyDouble")
+fun ClosedRange<Double>.reversedIfEmpty(): ClosedFloatingPointRange<Double> = if (isEmpty()) {
+	reversed()
 } else {
 	toDoubleRange()
 }
 
-@JvmName("reverseIfEmptyFloat")
-fun ClosedRange<Float>.reverseIfEmpty(): ClosedFloatingPointRange<Float> = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyFloat")
+fun ClosedRange<Float>.reversedIfEmpty(): ClosedFloatingPointRange<Float> = if (isEmpty()) {
+	reversed()
 } else {
 	toFloatRange()
 }
 
-@JvmName("reverseIfEmptyChar")
-fun ClosedRange<Char>.reverseIfEmpty(): CharRange = if (isEmpty()) {
-	reverse()
+@JvmName("reversedIfEmptyChar")
+fun ClosedRange<Char>.reversedIfEmpty(): CharRange = if (isEmpty()) {
+	reversed()
 } else {
 	toCharRange()
 }

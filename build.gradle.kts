@@ -21,7 +21,8 @@ repositories {
 }
 
 kotlin {
-	val assertJVersion = "3.23.1"
+	// Can't use AssertJ >= 3.21.0 because of https://github.com/assertj/assertj/issues/2361
+	val assertJVersion = "3.20.2"
 	val junitVersion = "5.9.0"
 
 	jvm {

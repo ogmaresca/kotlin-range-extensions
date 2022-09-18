@@ -1,31 +1,29 @@
 package com.ogm.kotlin.range.extensions
 
-import kotlin.jvm.JvmName
+fun <T : Comparable<T>> ClosedRange<T>.reversed(): ClosedRange<T> = endInclusive..start
 
-fun <T : Comparable<T>> ClosedRange<T>.reverse(): ClosedRange<T> = endInclusive..start
+@JvmName("reversedLong")
+fun ClosedRange<Long>.reversed(): LongRange = endInclusive..start
 
-@JvmName("reverseLong")
-fun ClosedRange<Long>.reverse(): LongRange = endInclusive..start
+@JvmName("reversedULong")
+fun ClosedRange<ULong>.reversed(): ULongRange = endInclusive..start
 
-@JvmName("reverseULong")
-fun ClosedRange<ULong>.reverse(): ULongRange = endInclusive..start
+@JvmName("reversedInt")
+fun ClosedRange<Int>.reversed(): IntRange = endInclusive..start
 
-@JvmName("reverseInt")
-fun ClosedRange<Int>.reverse(): IntRange = endInclusive..start
+@JvmName("reversedUInt")
+fun ClosedRange<UInt>.reversed(): UIntRange = endInclusive..start
 
-@JvmName("reverseUInt")
-fun ClosedRange<UInt>.reverse(): UIntRange = endInclusive..start
+@JvmName("reversedUShort")
+fun ClosedRange<UShort>.reversed(): UShortRange = (endInclusive..start).toUShortRange()
 
-@JvmName("reverseUShort")
-fun ClosedRange<UShort>.reverse(): UShortRange = (endInclusive..start).toUShortRange()
+@JvmName("reversedDouble")
+fun ClosedRange<Double>.reversed(): ClosedFloatingPointRange<Double> = endInclusive..start
 
-@JvmName("reverseDouble")
-fun ClosedRange<Double>.reverse(): ClosedFloatingPointRange<Double> = endInclusive..start
+@JvmName("reversedFloat")
+fun ClosedRange<Float>.reversed(): ClosedFloatingPointRange<Float> = endInclusive..start
 
-@JvmName("reverseFloat")
-fun ClosedRange<Float>.reverse(): ClosedFloatingPointRange<Float> = endInclusive..start
-
-@JvmName("reverseChar")
-fun ClosedRange<Char>.reverse(): CharRange = endInclusive..start
+@JvmName("reversedChar")
+fun ClosedRange<Char>.reversed(): CharRange = endInclusive..start
 
 // TODO support for every custom range

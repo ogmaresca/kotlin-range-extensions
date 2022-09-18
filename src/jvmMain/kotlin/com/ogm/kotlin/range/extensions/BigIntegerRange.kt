@@ -17,3 +17,5 @@ data class BigIntegerRange(
 }
 
 operator fun BigInteger.rangeTo(that: BigInteger) = BigIntegerRange(this, that)
+
+infix fun BigInteger.downTo(that: BigInteger) = that..this

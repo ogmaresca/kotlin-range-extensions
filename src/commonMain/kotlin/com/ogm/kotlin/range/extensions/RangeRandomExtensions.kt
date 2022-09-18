@@ -1,4 +1,4 @@
-package com.ogm.kotlin.range.extensionsvalueMinusStep
+package com.ogm.kotlin.range.extensions
 
 import com.ogm.kotlin.range.extensions.mapToDoubleRange
 import com.ogm.kotlin.range.extensions.toCharRange
