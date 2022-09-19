@@ -1,7 +1,5 @@
 package com.ogm.kotlin.range.extensions
 
-import kotlin.jvm.JvmName
-
 fun ClosedRange<Long>.toLongRange(): LongRange = when (this) {
 	is LongRange -> this
 	else -> start..endInclusive
@@ -22,6 +20,17 @@ fun ClosedRange<UInt>.toUIntRange(): UIntRange = when (this) {
 	else -> start..endInclusive
 }
 
+fun ClosedRange<Short>.toShortRange(): ShortRange = when (this) {
+	is ShortRange -> this
+	else -> ShortRange(start, endInclusive)
+}
+
+@JvmName("toShortRangeFromIntRange")
+fun ClosedRange<Int>.toShortRange() = when (this) {
+	is IntRange -> ShortRange(this)
+	else -> ShortRange(start.toShort(), endInclusive.toShort())
+}
+
 fun ClosedRange<UShort>.toUShortRange(): UShortRange = when (this) {
 	is UShortRange -> this
 	else -> UShortRange(start, endInclusive)
@@ -31,6 +40,28 @@ fun ClosedRange<UShort>.toUShortRange(): UShortRange = when (this) {
 fun ClosedRange<UInt>.toUShortRange() = when (this) {
 	is UIntRange -> UShortRange(this)
 	else -> UShortRange(start.toUShort(), endInclusive.toUShort())
+}
+
+fun ClosedRange<Byte>.toByteRange(): ByteRange = when (this) {
+	is ByteRange -> this
+	else -> ByteRange(start, endInclusive)
+}
+
+@JvmName("toByteRangeFromIntRange")
+fun ClosedRange<Int>.toByteRange() = when (this) {
+	is IntRange -> ByteRange(this)
+	else -> ByteRange(start.toByte(), endInclusive.toByte())
+}
+
+fun ClosedRange<UByte>.toUByteRange(): UByteRange = when (this) {
+	is UByteRange -> this
+	else -> UByteRange(start, endInclusive)
+}
+
+@JvmName("toUByteRangeFromUIntRange")
+fun ClosedRange<UInt>.toUByteRange() = when (this) {
+	is UIntRange -> UByteRange(this)
+	else -> UByteRange(start.toUByte(), endInclusive.toUByte())
 }
 
 fun ClosedRange<Double>.toDoubleRange(): ClosedFloatingPointRange<Double> = when (this) {

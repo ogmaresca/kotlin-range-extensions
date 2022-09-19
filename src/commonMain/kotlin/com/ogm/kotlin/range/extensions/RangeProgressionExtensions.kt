@@ -8,7 +8,13 @@ fun ClosedRange<Int>.step(step: Int = 1) = IntProgression.fromClosedRange(start,
 
 fun ClosedRange<UInt>.step(step: Int = 1) = UIntProgression.fromClosedRange(start, endInclusive, step)
 
+fun ClosedRange<Short>.step(step: Short = 1) = ShortProgression.fromClosedRange(this, step)
+
 fun ClosedRange<UShort>.step(step: Short = 1) = UShortProgression.fromClosedRange(this, step)
+
+fun ClosedRange<Byte>.step(step: Byte = 1) = ByteProgression.fromClosedRange(this, step)
+
+fun ClosedRange<UByte>.step(step: Byte = 1) = UByteProgression.fromClosedRange(this, step)
 
 fun ClosedRange<Double>.step(step: Double) = DoubleProgression.fromClosedRange(this, step)
 

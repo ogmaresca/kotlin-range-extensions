@@ -68,24 +68,16 @@ fun ClosedRange<Duration>.randomOrNull(unit: TemporalUnit, random: Random = Rand
 	takeUnless { it.isEmpty() }?.random(unit, random)
 
 @JvmName("randomInstant")
-fun ClosedRange<Instant>.random(random: Random = Random.Default): Instant =
-	random(ChronoUnit.NANOS, random)
+fun ClosedRange<Instant>.random(random: Random = Random.Default): Instant {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+	val diff = endInclusive.toBigIntegerEpochNanos() - start.toBigIntegerEpochNanos()
+	val durationRange = Duration.ZERO..durationOfNanos(diff)
+	return start + durationRange.random(random)
+}
 
 @JvmName("randomOrNullInstant")
 fun ClosedRange<Instant>.randomOrNull(random: Random = Random.Default): Instant? =
 	takeUnless { it.isEmpty() }?.random(random)
-
-@JvmName("randomInstant")
-fun ClosedRange<Instant>.random(unit: ChronoUnit, random: Random = Random.Default): Instant {
-	check(!isEmpty()) { "Cannot get random in empty range: $this" }
-	val diff = endInclusive.toBigIntegerEpochNanos() - start.toBigIntegerEpochNanos()
-	val durationRange = Duration.ZERO..durationOfNanos(diff)
-	return start + durationRange.random(unit, random)
-}
-
-@JvmName("randomOrNullInstant")
-fun ClosedRange<Instant>.randomOrNull(unit: ChronoUnit, random: Random = Random.Default): Instant? =
-	takeUnless { it.isEmpty() }?.random(unit, random)
 
 @JvmName("randomLocalDate")
 fun ClosedRange<LocalDate>.random(random: Random = Random.Default): LocalDate {

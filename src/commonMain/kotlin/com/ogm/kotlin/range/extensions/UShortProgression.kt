@@ -1,14 +1,12 @@
 package com.ogm.kotlin.range.extensions
 
-import kotlin.jvm.JvmInline
-
 @JvmInline
 value class UShortProgression internal constructor(
 	private val value: UIntProgression,
 ) : Iterable<UShort> {
 	val first get() = value.first.toUShort()
 	val last get() = value.last.toUShort()
-	val step get() = value.step.toUShort()
+	val step get() = value.step.toShort()
 
 	override fun iterator(): Iterator<UShort> = UShortProgressionIterator(value.iterator())
 

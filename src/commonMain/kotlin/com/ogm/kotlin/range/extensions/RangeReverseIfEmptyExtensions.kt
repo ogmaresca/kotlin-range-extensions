@@ -34,12 +34,34 @@ fun ClosedRange<UInt>.reversedIfEmpty(): UIntRange = if (isEmpty()) {
 	toUIntRange()
 }
 
+@JvmName("reversedIfEmptyShort")
+fun ClosedRange<Short>.reversedIfEmpty(): ShortRange = if (isEmpty()) {
+	reversed()
+} else {
+	toShortRange()
+}
+
 @JvmName("reversedIfEmptyUShort")
 fun ClosedRange<UShort>.reversedIfEmpty(): UShortRange = if (isEmpty()) {
 	reversed()
 } else {
 	toUShortRange()
 }
+
+@JvmName("reversedIfEmptyByte")
+fun ClosedRange<Byte>.reversedIfEmpty(): ByteRange = if (isEmpty()) {
+	reversed()
+} else {
+	toByteRange()
+}
+
+@JvmName("reversedIfEmptyUByte")
+fun ClosedRange<UByte>.reversedIfEmpty(): UByteRange = if (isEmpty()) {
+	reversed()
+} else {
+	toUByteRange()
+}
+
 
 @JvmName("reversedIfEmptyDouble")
 fun ClosedRange<Double>.reversedIfEmpty(): ClosedFloatingPointRange<Double> = if (isEmpty()) {

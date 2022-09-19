@@ -312,6 +312,8 @@ class LocalDateTests {
 		assertThat(now..now.plusDays(1)).isNotEqualTo(now..now.plusDays(2))
 		assertThat(now..now.plusDays(1)).isNotEqualTo(now..now)
 		assertThat(now..now.plusDays(1)).isNotEqualTo(now.plusDays(1)..now)
+		assertThat(now..now.plusDays(1)).isNotEqualTo(now downTo now.plusDays(1))
+		assertThat(now until now.plusDays(2)).isEqualTo(now..now.plusDays(1))
 	}
 
 	@Test

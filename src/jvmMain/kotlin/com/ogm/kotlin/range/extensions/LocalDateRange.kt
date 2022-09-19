@@ -19,4 +19,6 @@ data class LocalDateRange(
 
 operator fun LocalDate.rangeTo(that: LocalDate) = LocalDateRange(this, that)
 
+infix fun LocalDate.until(that: LocalDate) = this..that.minusDays(1)
+
 infix fun LocalDate.downTo(that: LocalDate) = that..this
