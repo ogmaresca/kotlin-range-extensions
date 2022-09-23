@@ -1,11 +1,12 @@
 [*]
+charset = utf-8
 end_of_line = lf
 insert_final_newline = true
+indent_style = tab
+indent_size = 4
 
 [{*.kt, *.kts}]
-indent_style = tab
 max_line_length = 120
-indent_size = 4
 ij_continuation_indent_size = 4
 ij_java_names_count_to_use_import_on_demand = 9999
 ij_kotlin_align_in_columns_case_branch = false
@@ -40,6 +41,7 @@ ij_kotlin_extends_list_wrap = normal
 ij_kotlin_field_annotation_wrap = split_into_lines
 ij_kotlin_finally_on_new_line = false
 ij_kotlin_if_rparen_on_new_line = false
+ij_kotlin_imports_layout = *
 ij_kotlin_import_nested_classes = false
 ij_kotlin_insert_whitespaces_in_simple_one_line_method = true
 ij_kotlin_keep_blank_lines_before_right_brace = 2

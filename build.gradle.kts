@@ -6,18 +6,21 @@ repositories {
 plugins {
 	val kotlinVersion = "1.7.10"
 	val spotbugsVersion = "5.0.12"
+	val spotlessVersion = "6.11.0"
 
 	kotlin("multiplatform") version kotlinVersion
 	id("com.github.spotbugs") version spotbugsVersion
+	id("com.diffplug.spotless") version spotlessVersion
 }
 
 apply(plugin = "com.github.spotbugs")
+apply(plugin = "com.diffplug.spotless")
 
 group = "com.ogm.kotlin.range.extensions"
 version = "0.1.0"
 
-repositories { 
-    mavenCentral()
+repositories {
+	mavenCentral()
 }
 
 kotlin {
@@ -38,16 +41,22 @@ kotlin {
 	}
 
 	sourceSets {
-		@Suppress("UNUSED_VARIABLE") val commonMain by getting {}
-		@Suppress("UNUSED_VARIABLE") val commonTest by getting {
+		@Suppress("UNUSED_VARIABLE")
+		val commonMain by getting {}
+
+		@Suppress("UNUSED_VARIABLE")
+		val commonTest by getting {
 			dependencies {
 				implementation(kotlin("test-common"))
 				implementation(kotlin("test-annotations-common"))
 			}
 		}
 
-		@Suppress("UNUSED_VARIABLE") val jvmMain by getting {}
-		@Suppress("UNUSED_VARIABLE") val jvmTest by getting {
+		@Suppress("UNUSED_VARIABLE")
+		val jvmMain by getting {}
+
+		@Suppress("UNUSED_VARIABLE")
+		val jvmTest by getting {
 			dependencies {
 				implementation(kotlin("test"))
 				implementation("org.assertj:assertj-core:$assertJVersion")
@@ -59,9 +68,33 @@ kotlin {
 	}
 }
 
-spotbugs {
-	showProgress.set(true)
-	excludeFilter.set(project.file("config/spotbugs/exclude.xml"))
+spotless {
+	var editorconfigLineIsForKotlin = false
+	val editorConfigRules = file(".editorconfig")
+		.readLines()
+		.mapNotNull {
+			if (it.startsWith('[') && it.endsWith(']')) {
+				editorconfigLineIsForKotlin = it == "[*]" || it == "[{*.kt, *.kts}]"
+				null
+			} else if (editorconfigLineIsForKotlin && it.contains('=')) {
+				val (rule, value) = it.split('=')
+				rule.trim() to value.trim()
+			} else {
+				null
+			}
+		}
+		.toMap()
+
+	println("editorConfigRules == $editorConfigRules")
+
+	kotlin {
+		target("**/*.kt")
+		ktlint().editorConfigOverride(editorConfigRules)
+	}
+
+	kotlinGradle {
+		ktlint().editorConfigOverride(editorConfigRules)
+	}
 }
 
 tasks {
@@ -84,11 +117,11 @@ tasks {
 		effort.set(com.github.spotbugs.snom.Effort.MAX)
 		showStackTraces = true
 		reports.create("xml") {
-			enabled = true
+			required.set(true)
 			setStylesheet("fancy-hist.xsl")
 		}
 		reports.create("html") {
-			enabled = true
+			required.set(true)
 			setStylesheet("fancy-hist.xsl")
 		}
 	}

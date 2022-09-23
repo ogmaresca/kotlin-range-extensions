@@ -30,8 +30,7 @@ class FloatProgression private constructor(
 			if (value == last) {
 				if (!hasNext) throw NoSuchElementException()
 				hasNext = false
-			}
-			else {
+			} else {
 				next += step
 			}
 			return value

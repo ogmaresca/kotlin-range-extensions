@@ -52,7 +52,6 @@ class LocalDateTests {
 		assertThat(range.contains(now.plusWeeks(1))).isFalse
 		assertThat(range.contains(now.plusDays(1))).isTrue
 
-
 		assertThat(range).containsExactly(now.minusDays(1), now, now.plusDays(1))
 
 		assertThat(range.toString()).isEqualTo("${now.minusDays(1)}..${now.plusDays(1)}")
@@ -76,7 +75,7 @@ class LocalDateTests {
 				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
 				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(10))
 				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)}..${now.plusDays(10)} step P2D"
+					"${now.minusDays(10)}..${now.plusDays(10)} step P2D",
 				)
 				assertThat(it.hashCode()).isNotIn(-1, 0)
 			}.containsExactly(
@@ -99,7 +98,7 @@ class LocalDateTests {
 				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
 				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(8))
 				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)}..${now.plusDays(8)} step P3D"
+					"${now.minusDays(10)}..${now.plusDays(8)} step P3D",
 				)
 				assertThat(it.hashCode()).isNotIn(-1, 0)
 			}.containsExactly(
@@ -112,29 +111,29 @@ class LocalDateTests {
 				now.plusDays(8),
 			)
 
+		val monthPeriod = Period.ofMonths(2).plusDays(2)
 		assertThat(
-			(now.minusMonths(10)..now.plusMonths(10))
-				.step(Period.ofMonths(2).plusDays(2)),
+			(now.minusMonths(10)..now.plusMonths(10)).step(monthPeriod),
 		).satisfies {
-			val expectedLast = now.plusMonths(8).plusDays(18)
+			val expectedLast = now.minusMonths(10).plusXTimes(monthPeriod, 9)
 			assertThat((it as LocalDateProgression).isEmpty()).isFalse
 			assertThat((it as LocalDateProgression).first).isEqualTo(now.minusMonths(10))
 			assertThat((it as LocalDateProgression).last).isEqualTo(expectedLast)
 			assertThat(it.toString()).isEqualTo(
-				"${now.minusMonths(10)}..$expectedLast step P2M2D"
+				"${now.minusMonths(10)}..$expectedLast step P2M2D",
 			)
 			assertThat(it.hashCode()).isNotIn(-1, 0)
 		}.containsExactly(
 			now.minusMonths(10),
-			now.minusMonths(8).plusDays(2),
-			now.minusMonths(6).plusDays(4),
-			now.minusMonths(4).plusDays(6),
-			now.minusMonths(2).plusDays(8),
-			now.plusDays(10),
-			now.plusMonths(2).plusDays(12),
-			now.plusMonths(4).plusDays(14),
-			now.plusMonths(6).plusDays(16),
-			now.plusMonths(8).plusDays(18),
+			now.minusMonths(10) + monthPeriod,
+			now.minusMonths(10).plusXTimes(monthPeriod, 2),
+			now.minusMonths(10).plusXTimes(monthPeriod, 3),
+			now.minusMonths(10).plusXTimes(monthPeriod, 4),
+			now.minusMonths(10).plusXTimes(monthPeriod, 5),
+			now.minusMonths(10).plusXTimes(monthPeriod, 6),
+			now.minusMonths(10).plusXTimes(monthPeriod, 7),
+			now.minusMonths(10).plusXTimes(monthPeriod, 8),
+			now.minusMonths(10).plusXTimes(monthPeriod, 9),
 		)
 
 		assertThat((now.minusDays(10)..now.plusDays(10)).step(Period.ofDays(-1)))
@@ -143,7 +142,7 @@ class LocalDateTests {
 				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
 				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(10))
 				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)} downTo ${now.plusDays(10)} step P-1D"
+					"${now.minusDays(10)} downTo ${now.plusDays(10)} step P-1D",
 				)
 				assertThat(it.hashCode()).isEqualTo(-1)
 			}
@@ -170,7 +169,7 @@ class LocalDateTests {
 				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
 				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(10))
 				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)}..${now.plusDays(10)} step P2D"
+					"${now.minusDays(10)}..${now.plusDays(10)} step P2D",
 				)
 				assertThat(it.hashCode()).isNotIn(-1, 0)
 			}.containsExactly(
@@ -193,7 +192,7 @@ class LocalDateTests {
 				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
 				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(8))
 				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)}..${now.plusDays(8)} step P3D"
+					"${now.minusDays(10)}..${now.plusDays(8)} step P3D",
 				)
 				assertThat(it.hashCode()).isNotIn(-1, 0)
 			}.containsExactly(
@@ -206,29 +205,29 @@ class LocalDateTests {
 				now.plusDays(8),
 			)
 
+		val monthPeriod = Period.ofMonths(2).plusDays(2)
 		assertThat(
-			(now.plusMonths(10) downTo now.minusMonths(10))
-				.step(Period.ofMonths(2).plusDays(2)),
+			(now.plusMonths(10) downTo now.minusMonths(10)).step(monthPeriod),
 		).satisfies {
-			val expectedLast = now.plusMonths(8).plusDays(18)
+			val expectedLast = now.minusMonths(10).plusXTimes(monthPeriod, 9)
 			assertThat((it as LocalDateProgression).isEmpty()).isFalse
 			assertThat((it as LocalDateProgression).first).isEqualTo(now.minusMonths(10))
 			assertThat((it as LocalDateProgression).last).isEqualTo(expectedLast)
 			assertThat(it.toString()).isEqualTo(
-				"${now.minusMonths(10)}..$expectedLast step P2M2D"
+				"${now.minusMonths(10)}..$expectedLast step P2M2D",
 			)
 			assertThat(it.hashCode()).isNotIn(-1, 0)
 		}.containsExactly(
 			now.minusMonths(10),
-			now.minusMonths(8).plusDays(2),
-			now.minusMonths(6).plusDays(4),
-			now.minusMonths(4).plusDays(6),
-			now.minusMonths(2).plusDays(8),
-			now.plusDays(10),
-			now.plusMonths(2).plusDays(12),
-			now.plusMonths(4).plusDays(14),
-			now.plusMonths(6).plusDays(16),
-			now.plusMonths(8).plusDays(18),
+			now.minusMonths(10) + monthPeriod,
+			now.minusMonths(10).plusXTimes(monthPeriod, 2),
+			now.minusMonths(10).plusXTimes(monthPeriod, 3),
+			now.minusMonths(10).plusXTimes(monthPeriod, 4),
+			now.minusMonths(10).plusXTimes(monthPeriod, 5),
+			now.minusMonths(10).plusXTimes(monthPeriod, 6),
+			now.minusMonths(10).plusXTimes(monthPeriod, 7),
+			now.minusMonths(10).plusXTimes(monthPeriod, 8),
+			now.minusMonths(10).plusXTimes(monthPeriod, 9),
 		)
 
 		assertThat((now.plusDays(10) downTo now.minusDays(10)).step(Period.ofDays(-1)))
@@ -237,7 +236,7 @@ class LocalDateTests {
 				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
 				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(10))
 				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)} downTo ${now.plusDays(10)} step P-1D"
+					"${now.minusDays(10)} downTo ${now.plusDays(10)} step P-1D",
 				)
 				assertThat(it.hashCode()).isEqualTo(-1)
 			}
@@ -328,5 +327,10 @@ class LocalDateTests {
 			.isEqualTo((now..now.plusDays(1)).step(Period.ofDays(2)))
 		assertThat((now.plusDays(1)..now).step(Period.ofDays(2)))
 			.isNotEqualTo((now..now.plusDays(1)).step(Period.ofDays(2)))
+	}
+
+	private companion object {
+		private fun LocalDate.plusXTimes(period: Period, times: Int) =
+			List(times) { period }.fold(this) { acc, it -> acc + it }
 	}
 }

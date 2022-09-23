@@ -62,7 +62,6 @@ fun ClosedRange<UByte>.reversedIfEmpty(): UByteRange = if (isEmpty()) {
 	toUByteRange()
 }
 
-
 @JvmName("reversedIfEmptyDouble")
 fun ClosedRange<Double>.reversedIfEmpty(): ClosedFloatingPointRange<Double> = if (isEmpty()) {
 	reversed()

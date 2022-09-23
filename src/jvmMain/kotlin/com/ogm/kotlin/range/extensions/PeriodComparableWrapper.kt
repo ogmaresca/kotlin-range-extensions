@@ -7,8 +7,8 @@ import java.time.chrono.ChronoPeriod
 // https://kotlinlang.org/docs/whatsnew17.html#allow-implementation-by-delegation-to-an-inlined-value-of-an-inline-class
 
 @JvmInline
-value class PeriodComparableWrapper(private val period: Period)
-	: Comparable<PeriodComparableWrapper>, ChronoPeriod by period {
+value class PeriodComparableWrapper(private val period: Period) :
+	Comparable<PeriodComparableWrapper>, ChronoPeriod by period {
 	override fun compareTo(other: PeriodComparableWrapper): Int {
 		val normalized = period.normalized()
 		val otherNormalized = other.period.normalized()

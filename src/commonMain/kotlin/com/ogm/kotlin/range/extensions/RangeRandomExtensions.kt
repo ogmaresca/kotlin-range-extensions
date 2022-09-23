@@ -26,7 +26,7 @@ fun Random.nextUByte(range: ClosedRange<UByte>): UByte {
 @JvmName("randomShort")
 fun ClosedRange<Short>.random(random: Random = Random.Default): Short = try {
 	random.nextShort(this)
-} catch(e: IllegalArgumentException) {
+} catch (e: IllegalArgumentException) {
 	throw NoSuchElementException(e.message)
 }
 
@@ -37,7 +37,7 @@ fun ClosedRange<Short>.randomOrNull(random: Random = Random.Default): Short? =
 @JvmName("randomUShort")
 fun ClosedRange<UShort>.random(random: Random = Random.Default): UShort = try {
 	random.nextUShort(this)
-} catch(e: IllegalArgumentException) {
+} catch (e: IllegalArgumentException) {
 	throw NoSuchElementException(e.message)
 }
 
@@ -48,7 +48,7 @@ fun ClosedRange<UShort>.randomOrNull(random: Random = Random.Default): UShort? =
 @JvmName("randomByte")
 fun ClosedRange<Byte>.random(random: Random = Random.Default): Byte = try {
 	random.nextByte(this)
-} catch(e: IllegalArgumentException) {
+} catch (e: IllegalArgumentException) {
 	throw NoSuchElementException(e.message)
 }
 
@@ -59,7 +59,7 @@ fun ClosedRange<Byte>.randomOrNull(random: Random = Random.Default): Byte? =
 @JvmName("randomUByte")
 fun ClosedRange<UByte>.random(random: Random = Random.Default): UByte = try {
 	random.nextUByte(this)
-} catch(e: IllegalArgumentException) {
+} catch (e: IllegalArgumentException) {
 	throw NoSuchElementException(e.message)
 }
 
@@ -70,7 +70,7 @@ fun ClosedRange<UByte>.randomOrNull(random: Random = Random.Default): UByte? =
 @JvmName("randomDouble")
 fun ClosedRange<Double>.random(random: Random = Random.Default): Double = try {
 	random.nextDouble(start, endInclusive + Double.MIN_VALUE)
-} catch(e: IllegalArgumentException) {
+} catch (e: IllegalArgumentException) {
 	throw NoSuchElementException(e.message)
 }
 
@@ -81,7 +81,7 @@ fun ClosedRange<Double>.randomOrNull(random: Random = Random.Default): Double? =
 @JvmName("randomFloat")
 fun ClosedRange<Float>.random(random: Random = Random.Default): Float = try {
 	mapToDoubleRange { it.toDouble() }.random(random).toFloat()
-} catch(e: IllegalArgumentException) {
+} catch (e: IllegalArgumentException) {
 	throw NoSuchElementException(e.message)
 }
 
@@ -92,7 +92,7 @@ fun ClosedRange<Float>.randomOrNull(random: Random = Random.Default): Float? =
 @JvmName("randomChar")
 fun ClosedRange<Char>.random(random: Random = Random.Default): Char = try {
 	Char(mapToIntRange { it.code }.random(random))
-} catch(e: IllegalArgumentException) {
+} catch (e: IllegalArgumentException) {
 	throw NoSuchElementException(e.message)
 }
 
