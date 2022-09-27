@@ -20,7 +20,13 @@ class PeriodComparableWrapperTests {
 			assertThat(value).isGreaterThan(Period.ofYears(it).toComparable())
 		}
 
-		(1..59).forEach {
+		(1..1).forEach {
+			assertThat(value).isGreaterThan(Period.ofDays(it).toComparable())
+			assertThat(value).isGreaterThan(Period.ofMonths(it).toComparable())
+			assertThat(value).isLessThan(Period.ofYears(it).toComparable())
+		}
+
+		(2..59).forEach {
 			assertThat(value).isGreaterThan(Period.ofDays(it).toComparable())
 			assertThat(value).isLessThan(Period.ofMonths(it).toComparable())
 			assertThat(value).isLessThan(Period.ofYears(it).toComparable())
@@ -89,8 +95,28 @@ class PeriodComparableWrapperTests {
 			}
 		}
 
-		(31..1_000).forEach {
+		(31..917).forEach {
 			assertThat(value).isGreaterThan(Period.ofDays(it).toComparable())
+			assertThat(value).isLessThan(Period.ofMonths(it).toComparable())
+			assertThat(value).isLessThan(Period.ofYears(it).toComparable())
+
+			(1L..11L).forEach { months ->
+				assertThat(value).isLessThan(Period.ofYears(it).plusMonths(months).toComparable())
+			}
+		}
+
+		(918..918).forEach {
+			assertThat(value).isEqualByComparingTo(Period.ofDays(it).toComparable())
+			assertThat(value).isLessThan(Period.ofMonths(it).toComparable())
+			assertThat(value).isLessThan(Period.ofYears(it).toComparable())
+
+			(1L..11L).forEach { months ->
+				assertThat(value).isLessThan(Period.ofYears(it).plusMonths(months).toComparable())
+			}
+		}
+
+		(919..1_000).forEach {
+			assertThat(value).isLessThan(Period.ofDays(it).toComparable())
 			assertThat(value).isLessThan(Period.ofMonths(it).toComparable())
 			assertThat(value).isLessThan(Period.ofYears(it).toComparable())
 

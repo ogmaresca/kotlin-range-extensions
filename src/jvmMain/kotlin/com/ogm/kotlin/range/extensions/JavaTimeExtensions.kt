@@ -3,7 +3,12 @@ package com.ogm.kotlin.range.extensions
 import java.math.BigInteger
 import java.time.Duration
 import java.time.Instant
+import java.time.Period
 import java.time.temporal.ChronoField
+
+internal fun Period.toMaxTotalDays(): Long = normalized().let {
+	(it.years * 366L) + (it.months * 31L) + it.days
+}
 
 internal fun Instant.toBigIntegerEpochNanos(): BigInteger {
 	val seconds = BigInteger.valueOf(epochSecond) * NANOS_PER_SECOND

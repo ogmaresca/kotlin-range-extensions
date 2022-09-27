@@ -10,6 +10,9 @@ import java.time.LocalTime
 import java.time.OffsetDateTime
 import java.time.ZonedDateTime
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyBigInteger")
 fun ClosedRange<BigInteger>.reversedIfEmpty(): BigIntegerRange = if (isEmpty()) {
 	reversed()
@@ -17,6 +20,9 @@ fun ClosedRange<BigInteger>.reversedIfEmpty(): BigIntegerRange = if (isEmpty()) 
 	toBigIntegerRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyBigDecimal")
 fun ClosedRange<BigDecimal>.reversedIfEmpty(): BigDecimalRange = if (isEmpty()) {
 	reversed()
@@ -24,6 +30,9 @@ fun ClosedRange<BigDecimal>.reversedIfEmpty(): BigDecimalRange = if (isEmpty()) 
 	toBigDecimalRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyDuration")
 fun ClosedRange<Duration>.reversedIfEmpty(): DurationRange = if (isEmpty()) {
 	reversed()
@@ -31,6 +40,9 @@ fun ClosedRange<Duration>.reversedIfEmpty(): DurationRange = if (isEmpty()) {
 	toDurationRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyInstant")
 fun ClosedRange<Instant>.reversedIfEmpty(): InstantRange = if (isEmpty()) {
 	reversed()
@@ -38,6 +50,9 @@ fun ClosedRange<Instant>.reversedIfEmpty(): InstantRange = if (isEmpty()) {
 	toInstantRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyLocalDate")
 fun ClosedRange<LocalDate>.reversedIfEmpty(): LocalDateRange = if (isEmpty()) {
 	reversed()
@@ -45,6 +60,9 @@ fun ClosedRange<LocalDate>.reversedIfEmpty(): LocalDateRange = if (isEmpty()) {
 	toLocalDateRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyLocalDateTime")
 fun ClosedRange<LocalDateTime>.reversedIfEmpty(): LocalDateTimeRange = if (isEmpty()) {
 	reversed()
@@ -52,6 +70,9 @@ fun ClosedRange<LocalDateTime>.reversedIfEmpty(): LocalDateTimeRange = if (isEmp
 	toLocalDateTimeRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyLocalTime")
 fun ClosedRange<LocalTime>.reversedIfEmpty(): LocalTimeRange = if (isEmpty()) {
 	reversed()
@@ -59,6 +80,9 @@ fun ClosedRange<LocalTime>.reversedIfEmpty(): LocalTimeRange = if (isEmpty()) {
 	toLocalTimeRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyOffsetDateTime")
 fun ClosedRange<OffsetDateTime>.reversedIfEmpty(): OffsetDateTimeRange = if (isEmpty()) {
 	reversed()
@@ -66,6 +90,9 @@ fun ClosedRange<OffsetDateTime>.reversedIfEmpty(): OffsetDateTimeRange = if (isE
 	toOffsetDateTimeRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyZonedDateTime")
 fun ClosedRange<ZonedDateTime>.reversedIfEmpty(): ZonedDateTimeRange = if (isEmpty()) {
 	reversed()

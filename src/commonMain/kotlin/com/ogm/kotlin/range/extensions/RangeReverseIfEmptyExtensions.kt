@@ -1,11 +1,17 @@
 package com.ogm.kotlin.range.extensions
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 fun <T : Comparable<T>> ClosedRange<T>.reversedIfEmpty(): ClosedRange<T> = if (isEmpty()) {
 	endInclusive..start
 } else {
 	this
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyLong")
 fun ClosedRange<Long>.reversedIfEmpty(): LongRange = if (isEmpty()) {
 	reversed()
@@ -13,6 +19,9 @@ fun ClosedRange<Long>.reversedIfEmpty(): LongRange = if (isEmpty()) {
 	toLongRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyULong")
 fun ClosedRange<ULong>.reversedIfEmpty(): ULongRange = if (isEmpty()) {
 	reversed()
@@ -20,6 +29,9 @@ fun ClosedRange<ULong>.reversedIfEmpty(): ULongRange = if (isEmpty()) {
 	toULongRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyInt")
 fun ClosedRange<Int>.reversedIfEmpty(): IntRange = if (isEmpty()) {
 	reversed()
@@ -27,6 +39,9 @@ fun ClosedRange<Int>.reversedIfEmpty(): IntRange = if (isEmpty()) {
 	toIntRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyUInt")
 fun ClosedRange<UInt>.reversedIfEmpty(): UIntRange = if (isEmpty()) {
 	reversed()
@@ -34,6 +49,9 @@ fun ClosedRange<UInt>.reversedIfEmpty(): UIntRange = if (isEmpty()) {
 	toUIntRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyShort")
 fun ClosedRange<Short>.reversedIfEmpty(): ShortRange = if (isEmpty()) {
 	reversed()
@@ -41,6 +59,9 @@ fun ClosedRange<Short>.reversedIfEmpty(): ShortRange = if (isEmpty()) {
 	toShortRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyUShort")
 fun ClosedRange<UShort>.reversedIfEmpty(): UShortRange = if (isEmpty()) {
 	reversed()
@@ -48,6 +69,9 @@ fun ClosedRange<UShort>.reversedIfEmpty(): UShortRange = if (isEmpty()) {
 	toUShortRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyByte")
 fun ClosedRange<Byte>.reversedIfEmpty(): ByteRange = if (isEmpty()) {
 	reversed()
@@ -55,6 +79,9 @@ fun ClosedRange<Byte>.reversedIfEmpty(): ByteRange = if (isEmpty()) {
 	toByteRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyUByte")
 fun ClosedRange<UByte>.reversedIfEmpty(): UByteRange = if (isEmpty()) {
 	reversed()
@@ -62,6 +89,9 @@ fun ClosedRange<UByte>.reversedIfEmpty(): UByteRange = if (isEmpty()) {
 	toUByteRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyDouble")
 fun ClosedRange<Double>.reversedIfEmpty(): ClosedFloatingPointRange<Double> = if (isEmpty()) {
 	reversed()
@@ -69,6 +99,9 @@ fun ClosedRange<Double>.reversedIfEmpty(): ClosedFloatingPointRange<Double> = if
 	toDoubleRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyFloat")
 fun ClosedRange<Float>.reversedIfEmpty(): ClosedFloatingPointRange<Float> = if (isEmpty()) {
 	reversed()
@@ -76,6 +109,9 @@ fun ClosedRange<Float>.reversedIfEmpty(): ClosedFloatingPointRange<Float> = if (
 	toFloatRange()
 }
 
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyChar")
 fun ClosedRange<Char>.reversedIfEmpty(): CharRange = if (isEmpty()) {
 	reversed()

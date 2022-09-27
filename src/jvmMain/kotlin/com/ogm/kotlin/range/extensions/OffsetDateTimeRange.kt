@@ -8,6 +8,14 @@ data class OffsetDateTimeRange(
 	override val start: OffsetDateTime,
 	override val endInclusive: OffsetDateTime,
 ) : ClosedRange<OffsetDateTime>, Iterable<OffsetDateTime> {
+	override fun contains(value: OffsetDateTime): Boolean {
+		val comparator = OffsetDateTime.timeLineOrder()
+		return comparator.compare(start, value) <= 0 &&
+			comparator.compare(endInclusive, value) >= 0
+	}
+
+	override fun isEmpty(): Boolean = OffsetDateTime.timeLineOrder().compare(start, endInclusive) <= 0
+
 	override fun iterator(): Iterator<OffsetDateTime> =
 		OffsetDateTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
 

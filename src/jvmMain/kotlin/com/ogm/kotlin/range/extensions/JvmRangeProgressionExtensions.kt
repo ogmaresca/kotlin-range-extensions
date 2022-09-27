@@ -12,89 +12,199 @@ import java.time.Period
 import java.time.ZonedDateTime
 import java.time.temporal.TemporalUnit
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepBigInteger")
 fun ClosedRange<BigInteger>.step(step: BigInteger) =
 	BigIntegerProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepBigInteger")
 fun ClosedRange<BigInteger>.step(step: Long) = step(BigInteger.valueOf(step))
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepBigDecimal")
 fun ClosedRange<BigDecimal>.step(step: BigDecimal) =
 	BigDecimalProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepDuration")
 fun ClosedRange<Duration>.step(step: Duration) =
 	DurationProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [stepSize] [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepDuration")
 fun ClosedRange<Duration>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	DurationProgression.fromClosedRange(this, stepSize, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of a [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepDuration")
 fun ClosedRange<Duration>.step(stepUnit: TemporalUnit) =
 	DurationProgression.fromClosedRange(this, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepInstant")
 fun ClosedRange<Instant>.step(step: Duration) =
 	InstantProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [stepSize] [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepInstant")
 fun ClosedRange<Instant>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	InstantProgression.fromClosedRange(this, stepSize, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of a [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepInstant")
 fun ClosedRange<Instant>.step(stepUnit: TemporalUnit) =
 	InstantProgression.fromClosedRange(this, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepLocalDate")
 fun ClosedRange<LocalDate>.step(step: Period) =
 	LocalDateProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepLocalDateTime")
 fun ClosedRange<LocalDateTime>.step(step: Duration) =
 	LocalDateTimeProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [stepSize] [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepLocalDateTime")
 fun ClosedRange<LocalDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	LocalDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of a [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepLocalDateTime")
 fun ClosedRange<LocalDateTime>.step(stepUnit: TemporalUnit) =
 	LocalDateTimeProgression.fromClosedRange(this, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepLocalTime")
 fun ClosedRange<LocalTime>.step(step: Duration) =
 	LocalTimeProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [stepSize] [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepLocalTime")
 fun ClosedRange<LocalTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	LocalTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of a [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepLocalTime")
 fun ClosedRange<LocalTime>.step(stepUnit: TemporalUnit) =
 	LocalTimeProgression.fromClosedRange(this, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepOffsetDateTime")
 fun ClosedRange<OffsetDateTime>.step(step: Duration) =
 	OffsetDateTimeProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [stepSize] [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepOffsetDateTime")
 fun ClosedRange<OffsetDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	OffsetDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of a [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepOffsetDateTime")
 fun ClosedRange<OffsetDateTime>.step(stepUnit: TemporalUnit) =
 	OffsetDateTimeProgression.fromClosedRange(this, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepZonedDateTime")
 fun ClosedRange<ZonedDateTime>.step(step: Duration) =
 	ZonedDateTimeProgression.fromClosedRange(this, step)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [stepSize] [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepZonedDateTime")
 fun ClosedRange<ZonedDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
 	ZonedDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of a [stepUnit] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
 @JvmName("stepZonedDateTime")
 fun ClosedRange<ZonedDateTime>.step(stepUnit: TemporalUnit) =
 	ZonedDateTimeProgression.fromClosedRange(this, stepUnit)

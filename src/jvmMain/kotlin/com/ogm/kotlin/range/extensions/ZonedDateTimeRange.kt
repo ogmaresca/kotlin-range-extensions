@@ -8,6 +8,11 @@ data class ZonedDateTimeRange(
 	override val start: ZonedDateTime,
 	override val endInclusive: ZonedDateTime,
 ) : ClosedRange<ZonedDateTime>, Iterable<ZonedDateTime> {
+	override fun contains(value: ZonedDateTime): Boolean =
+		(start.toInstant()..endInclusive.toInstant()).contains(value.toInstant())
+
+	override fun isEmpty(): Boolean = (start.toInstant()..endInclusive.toInstant()).isEmpty()
+
 	override fun iterator(): Iterator<ZonedDateTime> =
 		ZonedDateTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
 
