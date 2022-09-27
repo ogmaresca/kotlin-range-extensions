@@ -1,12 +1,15 @@
 package com.ogm.kotlin.range.extensions
 
+import java.math.BigDecimal
 import java.math.BigInteger
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalUnit
+import kotlin.math.max
 import kotlin.random.Random
+import kotlin.random.asJavaRandom
 import kotlin.random.nextLong
 
 fun Random.nextDuration(range: ClosedRange<Duration>, unit: TemporalUnit = ChronoUnit.NANOS): Duration {
@@ -38,11 +41,29 @@ fun Random.nextDuration(range: ClosedRange<Duration>, unit: TemporalUnit = Chron
 }
 
 fun Random.nextBigInteger(range: ClosedRange<BigInteger>): BigInteger {
+	if (range.start != BigInteger.ZERO) {
+		return nextBigInteger(range.mapRange { it - range.start }) + range.start
+	}
+
 	check(!range.isEmpty()) { "Cannot get random in empty range: $range" }
 
-	// TODO support values > Long.MAX_VALUE
-	val longRange = 0L..(range.endInclusive % BIG_INTEGER_MAX_LONG_VALUE).toLong()
-	return BigInteger.valueOf(nextLong(longRange))
+	val random = BigInteger(range.endInclusive.bitLength(), asJavaRandom())
+
+	return random % (range.endInclusive + BigInteger.ONE)
+}
+
+fun Random.nextBigDecimal(range: ClosedRange<BigDecimal>): BigDecimal {
+	check(!range.isEmpty()) { "Cannot get random in empty range: $range" }
+
+	val startScale = max(range.start.stripTrailingZeros().scale(), 0)
+	val endScale = max(range.endInclusive.stripTrailingZeros().scale(), 0)
+
+	val pow = BigInteger.TEN.pow(max(startScale, endScale))
+
+	val startInt = range.start.movePointRight(startScale).toBigInteger() * pow
+	val endInt = range.endInclusive.movePointRight(endScale).toBigInteger() * pow
+
+	return (startInt..endInt).random(this).toBigDecimal() / pow.toBigDecimal()
 }
 
 @JvmName("randomBigInteger")
@@ -50,6 +71,13 @@ fun ClosedRange<BigInteger>.random(random: Random = Random.Default): BigInteger 
 
 @JvmName("randomOrNullBigInteger")
 fun ClosedRange<BigInteger>.randomOrNull(random: Random = Random.Default): BigInteger? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+@JvmName("randomBigDecimal")
+fun ClosedRange<BigDecimal>.random(random: Random = Random.Default): BigDecimal = random.nextBigDecimal(this)
+
+@JvmName("randomOrNullBigDecimal")
+fun ClosedRange<BigDecimal>.randomOrNull(random: Random = Random.Default): BigDecimal? =
 	takeUnless { it.isEmpty() }?.random(random)
 
 @JvmName("randomDuration")

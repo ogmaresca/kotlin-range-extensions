@@ -1,5 +1,6 @@
 package com.ogm.kotlin.range.extensions
 
+import java.math.BigDecimal
 import java.math.BigInteger
 import java.time.LocalDate
 
@@ -8,6 +9,13 @@ fun ClosedRange<BigInteger>.reversedIfEmpty(): BigIntegerRange = if (isEmpty()) 
 	reversed()
 } else {
 	toBigIntegerRange()
+}
+
+@JvmName("reversedIfEmptyBigDecimal")
+fun ClosedRange<BigDecimal>.reversedIfEmpty(): BigDecimalRange = if (isEmpty()) {
+	reversed()
+} else {
+	toBigDecimalRange()
 }
 
 @JvmName("reversedIfEmptyLocalDate")

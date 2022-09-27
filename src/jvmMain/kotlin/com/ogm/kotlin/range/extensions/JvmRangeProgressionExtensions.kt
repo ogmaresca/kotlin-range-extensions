@@ -1,5 +1,6 @@
 package com.ogm.kotlin.range.extensions
 
+import java.math.BigDecimal
 import java.math.BigInteger
 import java.time.Duration
 import java.time.Instant
@@ -13,6 +14,10 @@ fun ClosedRange<BigInteger>.step(step: BigInteger) =
 
 @JvmName("stepBigInteger")
 fun ClosedRange<BigInteger>.step(step: Long) = step(BigInteger.valueOf(step))
+
+@JvmName("stepBigDecimal")
+fun ClosedRange<BigDecimal>.step(step: BigDecimal) =
+	BigDecimalProgression.fromClosedRange(this, step)
 
 @JvmName("stepDuration")
 fun ClosedRange<Duration>.step(step: Duration) =

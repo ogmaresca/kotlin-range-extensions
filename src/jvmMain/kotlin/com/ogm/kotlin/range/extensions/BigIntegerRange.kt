@@ -16,8 +16,17 @@ data class BigIntegerRange(
 	}
 }
 
+/**
+ * Create a closed [BigIntegerRange] from [this] value to the specified [that] value.
+ */
 operator fun BigInteger.rangeTo(that: BigInteger) = BigIntegerRange(this, that)
 
+/**
+ * Create an open [BigIntegerRange] from [this] value to the specified [that] value.
+ */
 infix fun BigInteger.until(that: BigInteger) = this..(that - BigInteger.ONE)
 
+/**
+ * Create a closed [BigIntegerRange] from [this] value down to the specified [that] value.
+ */
 infix fun BigInteger.downTo(that: BigInteger) = that..this
