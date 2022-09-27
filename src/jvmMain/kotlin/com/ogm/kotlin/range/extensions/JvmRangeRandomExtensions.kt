@@ -5,6 +5,11 @@ import java.math.BigInteger
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.OffsetDateTime
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
 import java.time.temporal.TemporalUnit
 import kotlin.math.max
@@ -115,6 +120,46 @@ fun ClosedRange<LocalDate>.random(random: Random = Random.Default): LocalDate {
 
 @JvmName("randomOrNullLocalDate")
 fun ClosedRange<LocalDate>.randomOrNull(random: Random = Random.Default): LocalDate? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+@JvmName("randomLocalDateTime")
+fun ClosedRange<LocalDateTime>.random(random: Random = Random.Default): LocalDateTime {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+	return mapToInstant { it.toInstant(ZoneOffset.UTC) }.random(random).atOffset(ZoneOffset.UTC).toLocalDateTime()
+}
+
+@JvmName("randomOrNullLocalDateTime")
+fun ClosedRange<LocalDateTime>.randomOrNull(random: Random = Random.Default): LocalDateTime? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+@JvmName("randomLocalTime")
+fun ClosedRange<LocalTime>.random(random: Random = Random.Default): LocalTime {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+	return LocalTime.ofNanoOfDay((start.toNanoOfDay()..endInclusive.toNanoOfDay()).random(random))
+}
+
+@JvmName("randomOrNullLocalTime")
+fun ClosedRange<LocalTime>.randomOrNull(random: Random = Random.Default): LocalTime? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+@JvmName("randomOffsetDateTime")
+fun ClosedRange<OffsetDateTime>.random(random: Random = Random.Default): OffsetDateTime {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+	return mapToInstant { it.toInstant() }.random(random).atOffset(start.offset)
+}
+
+@JvmName("randomOrNullOffsetDateTime")
+fun ClosedRange<OffsetDateTime>.randomOrNull(random: Random = Random.Default): OffsetDateTime? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+@JvmName("randomZonedDateTime")
+fun ClosedRange<ZonedDateTime>.random(random: Random = Random.Default): ZonedDateTime {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+	return mapToInstant { it.toInstant() }.random(random).atZone(start.zone)
+}
+
+@JvmName("randomOrNullZonedDateTime")
+fun ClosedRange<ZonedDateTime>.randomOrNull(random: Random = Random.Default): ZonedDateTime? =
 	takeUnless { it.isEmpty() }?.random(random)
 
 // TODO support for every custom range

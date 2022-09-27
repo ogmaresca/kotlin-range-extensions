@@ -17,8 +17,20 @@ data class LocalDateRange(
 	}
 }
 
+/**
+ * Create a closed [LocalDateRange] from [this] value to the specified [that] value.
+ * The [LocalDateRange] implements [Iterable], with a step of P1D.
+ */
 operator fun LocalDate.rangeTo(that: LocalDate) = LocalDateRange(this, that)
 
+/**
+ * Create an open [LocalDateRange] from [this] value to the specified [that] value.
+ * The [LocalDateRange] implements [Iterable], with a step of P1D.
+ */
 infix fun LocalDate.until(that: LocalDate) = this..that.minusDays(1)
 
+/**
+ * Create a closed [LocalDateRange] from [this] value until to the specified [that] value.
+ * The [LocalDateRange] implements [Iterable], with a step of P1D.
+ */
 infix fun LocalDate.downTo(that: LocalDate) = that..this
