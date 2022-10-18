@@ -4,7 +4,7 @@ repositories {
 }
 
 plugins {
-	val kotlinVersion = "1.7.10"
+	val kotlinVersion = "1.7.20"
 	val spotbugsVersion = "5.0.12"
 	val spotlessVersion = "6.11.0"
 
@@ -32,7 +32,7 @@ kotlin {
 		compilations.all {
 			kotlinOptions {
 				allWarningsAsErrors = true
-				freeCompilerArgs = listOf("-java-parameters")
+				freeCompilerArgs = listOf("-Xjsr305=warn -Xemit-java-type-annotations -java-parameters")
 				apiVersion = "1.5"
 				languageVersion = "1.7"
 				jvmTarget = "1.8"

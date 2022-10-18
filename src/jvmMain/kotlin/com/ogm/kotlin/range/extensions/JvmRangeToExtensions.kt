@@ -7,7 +7,11 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.MonthDay
 import java.time.OffsetDateTime
+import java.time.Year
+import java.time.YearMonth
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
 /**
@@ -67,10 +71,34 @@ fun ClosedRange<LocalTime>.toLocalTimeRange(): LocalTimeRange = when (this) {
 }
 
 /**
+ * Convert this [ClosedRange] to a [MonthDayRange]
+ */
+fun ClosedRange<MonthDay>.toMonthDayRange(): MonthDayRange = when (this) {
+	is MonthDayRange -> this
+	else -> start..endInclusive
+}
+
+/**
  * Convert this [ClosedRange] to a [OffsetDateTimeRange]
  */
 fun ClosedRange<OffsetDateTime>.toOffsetDateTimeRange(): OffsetDateTimeRange = when (this) {
 	is OffsetDateTimeRange -> this
+	else -> start..endInclusive
+}
+
+/**
+ * Convert this [ClosedRange] to a [YearMonthRange]
+ */
+fun ClosedRange<YearMonth>.toYearMonthRange(): YearMonthRange = when (this) {
+	is YearMonthRange -> this
+	else -> start..endInclusive
+}
+
+/**
+ * Convert this [ClosedRange] to a [YearRange]
+ */
+fun ClosedRange<Year>.toYearRange(): YearRange = when (this) {
+	is YearRange -> this
 	else -> start..endInclusive
 }
 
@@ -82,4 +110,10 @@ fun ClosedRange<ZonedDateTime>.toZonedDateTimeRange(): ZonedDateTimeRange = when
 	else -> start..endInclusive
 }
 
-// TODO support for every custom range
+/**
+ * Convert this [ClosedRange] to a [ZoneOffsetRange]
+ */
+fun ClosedRange<ZoneOffset>.toZoneOffsetRange(): ZoneOffsetRange = when (this) {
+	is ZoneOffsetRange -> this
+	else -> start..endInclusive
+}

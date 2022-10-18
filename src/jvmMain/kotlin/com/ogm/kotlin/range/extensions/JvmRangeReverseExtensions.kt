@@ -7,7 +7,11 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.MonthDay
 import java.time.OffsetDateTime
+import java.time.Year
+import java.time.YearMonth
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
 /**
@@ -55,13 +59,37 @@ fun ClosedRange<LocalTime>.reversed(): LocalTimeRange = endInclusive..start
 /**
  * Reverse this [ClosedRange]
  */
+@JvmName("reversedMonthDay")
+fun ClosedRange<MonthDay>.reversed(): MonthDayRange = endInclusive..start
+
+/**
+ * Reverse this [ClosedRange]
+ */
 @JvmName("reversedOffsetDateTime")
 fun ClosedRange<OffsetDateTime>.reversed(): OffsetDateTimeRange = endInclusive..start
 
 /**
  * Reverse this [ClosedRange]
  */
+@JvmName("reversedYearMonth")
+fun ClosedRange<YearMonth>.reversed(): YearMonthRange = endInclusive..start
+
+/**
+ * Reverse this [ClosedRange]
+ */
+@JvmName("reversedYear")
+fun ClosedRange<Year>.reversed(): YearRange = endInclusive..start
+
+/**
+ * Reverse this [ClosedRange]
+ */
 @JvmName("reversedZonedDateTime")
 fun ClosedRange<ZonedDateTime>.reversed(): ZonedDateTimeRange = endInclusive..start
+
+/**
+ * Reverse this [ClosedRange]
+ */
+@JvmName("reversedZoneOffset")
+fun ClosedRange<ZoneOffset>.reversed(): ZoneOffsetRange = endInclusive..start
 
 // TODO support for every custom range

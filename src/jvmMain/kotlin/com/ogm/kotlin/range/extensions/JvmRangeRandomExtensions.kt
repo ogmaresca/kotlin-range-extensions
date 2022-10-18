@@ -7,7 +7,10 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.MonthDay
 import java.time.OffsetDateTime
+import java.time.Year
+import java.time.YearMonth
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
@@ -221,9 +224,30 @@ fun ClosedRange<LocalTime>.randomOrNull(random: Random = Random.Default): LocalT
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * @throws [IllegalStateException] If the range is empty.
+ */
+@JvmName("randomMonthDay")
+fun ClosedRange<MonthDay>.random(random: Random = Random.Default): MonthDay {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+
+	return mapToLocalDate { LocalDate.of(1970, it.month, it.dayOfMonth) }
+		.random(random)
+		.let { MonthDay.of(it.month, it.dayOfMonth) }
+}
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * If the range is empty, then null will be returned instead.
+ */
+@JvmName("randomOrNullMonthDay")
+fun ClosedRange<MonthDay>.randomOrNull(random: Random = Random.Default): MonthDay? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
  *
  * If the [OffsetDateTime.offset] is different between the [ClosedRange.start] and [ClosedRange.endInclusive],
- * then the random value will be in the offset of the [ClosedRange.start].
+ * then the random value will be in the offset of the [ClosedRange.start].step
  * @throws [IllegalStateException] If the range is empty.
  */
 @JvmName("randomOffsetDateTime")
@@ -241,6 +265,51 @@ fun ClosedRange<OffsetDateTime>.random(random: Random = Random.Default): OffsetD
  */
 @JvmName("randomOrNullOffsetDateTime")
 fun ClosedRange<OffsetDateTime>.randomOrNull(random: Random = Random.Default): OffsetDateTime? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * @throws [IllegalStateException] If the range is empty.
+ */
+@JvmName("randomYearMonth")
+fun ClosedRange<YearMonth>.random(random: Random = Random.Default): YearMonth {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+
+	return mapToLongRange { (it.year * 12L) + it.monthValue }.random(random).let {
+		YearMonth.of(
+			(it / 12L).toInt(),
+			when (val month = (it % 12L).toInt()) {
+				0 -> 12
+				else -> month
+			},
+		)
+	}
+}
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * If the range is empty, then null will be returned instead.
+ */
+@JvmName("randomOrNullYearMonth")
+fun ClosedRange<YearMonth>.randomOrNull(random: Random = Random.Default): YearMonth? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * @throws [IllegalStateException] If the range is empty.
+ */
+@JvmName("randomYear")
+fun ClosedRange<Year>.random(random: Random = Random.Default): Year {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+	return Year.of(mapToIntRange { it.value }.random(random))
+}
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * If the range is empty, then null will be returned instead.
+ */
+@JvmName("randomOrNullYear")
+fun ClosedRange<Year>.randomOrNull(random: Random = Random.Default): Year? =
 	takeUnless { it.isEmpty() }?.random(random)
 
 /**
@@ -267,4 +336,20 @@ fun ClosedRange<ZonedDateTime>.random(random: Random = Random.Default): ZonedDat
 fun ClosedRange<ZonedDateTime>.randomOrNull(random: Random = Random.Default): ZonedDateTime? =
 	takeUnless { it.isEmpty() }?.random(random)
 
-// TODO support for every custom range
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * @throws [IllegalStateException] If the range is empty.
+ */
+@JvmName("randomZoneOffset")
+fun ClosedRange<ZoneOffset>.random(random: Random = Random.Default): ZoneOffset {
+	check(!isEmpty()) { "Cannot get random in empty range: $this" }
+	return ZoneOffset.ofTotalSeconds(mapToIntRange { it.totalSeconds }.random(random))
+}
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * If the range is empty, then null will be returned instead.
+ */
+@JvmName("randomOrNullZoneOffset")
+fun ClosedRange<ZoneOffset>.randomOrNull(random: Random = Random.Default): ZoneOffset? =
+	takeUnless { it.isEmpty() }?.random(random)

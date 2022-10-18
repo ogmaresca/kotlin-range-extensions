@@ -6,12 +6,12 @@ import java.time.Period
 class LocalDateProgression private constructor(
 	start: LocalDate,
 	endInclusive: LocalDate,
-	nonnormalizedStep: Period,
+	normalizedStep: Period,
 ) : AbstractToLongProgression<LocalDate, PeriodComparableWrapper>(
 	start,
 	endInclusive,
-	nonnormalizedStep.normalized().toComparable(),
-	nonnormalizedStep.days.toLong(),
+	normalizedStep.normalized().toComparable(),
+	normalizedStep.days.toLong(),
 	PeriodComparableWrapper.ZERO,
 	LocalDateToLongConverter,
 ) {

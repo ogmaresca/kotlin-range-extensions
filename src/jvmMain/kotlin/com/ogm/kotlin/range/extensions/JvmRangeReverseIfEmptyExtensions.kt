@@ -7,7 +7,11 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
+import java.time.MonthDay
 import java.time.OffsetDateTime
+import java.time.Year
+import java.time.YearMonth
+import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
 /**
@@ -83,6 +87,16 @@ fun ClosedRange<LocalTime>.reversedIfEmpty(): LocalTimeRange = if (isEmpty()) {
 /**
  * Reverse this [ClosedRange], if the range is empty
  */
+@JvmName("reversedIfEmptyMonthDay")
+fun ClosedRange<MonthDay>.reversedIfEmpty(): MonthDayRange = if (isEmpty()) {
+	reversed()
+} else {
+	toMonthDayRange()
+}
+
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyOffsetDateTime")
 fun ClosedRange<OffsetDateTime>.reversedIfEmpty(): OffsetDateTimeRange = if (isEmpty()) {
 	reversed()
@@ -93,11 +107,41 @@ fun ClosedRange<OffsetDateTime>.reversedIfEmpty(): OffsetDateTimeRange = if (isE
 /**
  * Reverse this [ClosedRange], if the range is empty
  */
+@JvmName("reversedIfEmptyYearMonth")
+fun ClosedRange<YearMonth>.reversedIfEmpty(): YearMonthRange = if (isEmpty()) {
+	reversed()
+} else {
+	toYearMonthRange()
+}
+
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
+@JvmName("reversedIfEmptyYear")
+fun ClosedRange<Year>.reversedIfEmpty(): YearRange = if (isEmpty()) {
+	reversed()
+} else {
+	toYearRange()
+}
+
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
 @JvmName("reversedIfEmptyZonedDateTime")
 fun ClosedRange<ZonedDateTime>.reversedIfEmpty(): ZonedDateTimeRange = if (isEmpty()) {
 	reversed()
 } else {
 	toZonedDateTimeRange()
+}
+
+/**
+ * Reverse this [ClosedRange], if the range is empty
+ */
+@JvmName("reversedIfEmptyZoneOffset")
+fun ClosedRange<ZoneOffset>.reversedIfEmpty(): ZoneOffsetRange = if (isEmpty()) {
+	reversed()
+} else {
+	toZoneOffsetRange()
 }
 
 // TODO support for every custom range
