@@ -1,3 +1,5 @@
+/** Generated file */
+
 package com.ogm.kotlin.range.extensions
 
 @JvmInline

@@ -75,7 +75,7 @@ val generateCode by tasks.registering {
 
 	val header = "/** Generated file */\n\npackage $packageName\n\n"
 
-	file("$rootDir/src").listFiles { it: File -> it.isDirectory }.forEach { sourceSet ->
+	file("$rootDir/src").listFiles { it: File -> it.isDirectory }?.forEach { sourceSet ->
 		logger.info("Processing $sourceSet templates")
 
 		val packageDir = "$sourceSet/kotlin/${packageName.replace('.', '/')}"
@@ -85,16 +85,29 @@ val generateCode by tasks.registering {
 			it.delete()
 		}
 
-		fileTree("$sourceSet/templates") { include("*.template") }.forEach { template ->
-			val lines = template.readLines()
+		fileTree("$sourceSet/templates") { include("*.template") }.forEach { templateFile ->
+			val lines = templateFile.readLines()
 
-			val declaration = lines.first().split("=", limit = 2)
-			val variable = declaration.first()
-			val values = declaration.last().split(",")
+			val declarations = lines
+				.takeWhile { it.matches(Regex("^[A-Z_]+=[A-Za-z0-9,_]+$")) }
+				.associateTo(linkedMapOf()) {
+					val declaration = it.split("=", limit = 2)
+					declaration.first() to declaration.last().split(",")
+				}
 
-			values.forEach {
-				val templatedFile = "$header${lines.drop(1).joinToString("\n").replace("\${$variable}", it)}\n"
-				val kotlinFile = "$packageDir/$it${template.nameWithoutExtension}.generated.kt"
+			check(declarations.values.map { it.size }.toSet().size == 1) {
+				"Invalid variables on $templateFile"
+			}
+
+			val template = lines.drop(declarations.size).joinToString("\n")
+
+			val (_, firstDeclarationValues) = declarations.entries.first { it.value.toSet().size == it.value.size }
+
+			firstDeclarationValues.forEachIndexed { i, filePrefix ->
+				val templatedFile = header + declarations.entries.fold(template) { acc, (variable, values) ->
+					acc.replace("\${$variable}", values[i])
+				} + "\n"
+				val kotlinFile = "$packageDir/$filePrefix${templateFile.nameWithoutExtension}.generated.kt"
 				logger.info("Generating file $kotlinFile")
 				file(kotlinFile).writeText(templatedFile, Charsets.UTF_8)
 			}

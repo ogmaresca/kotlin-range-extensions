@@ -1,3 +1,5 @@
+/** Generated file */
+
 package com.ogm.kotlin.range.extensions
 
 @JvmInline
@@ -6,7 +8,7 @@ value class UByteProgression internal constructor(
 ) : Iterable<UByte> {
 	val first get() = value.first.toUByte()
 	val last get() = value.last.toUByte()
-	val step get() = value.step.toByte()
+	val step get() = value.step.toUByte()
 
 	override fun iterator(): Iterator<UByte> = UByteProgressionIterator(value.iterator())
 
@@ -19,16 +21,16 @@ value class UByteProgression internal constructor(
 
 	companion object {
 		fun fromClosedRange(rangeStart: UByte, rangeEnd: UByte, step: Byte) =
-			UByteProgression(UIntProgression.fromClosedRange(rangeStart.toUInt(), rangeEnd.toUInt(), step.toInt()))
+			UByteProgression((rangeStart..rangeEnd).step(step.toInt()))
 
 		fun fromClosedRange(range: ClosedRange<UByte>, step: Byte) =
 			fromClosedRange(range.start, range.endInclusive, step)
 
 		fun fromOpenEndRange(rangeStart: UByte, rangeEnd: UByte, step: Byte) =
-			ShortProgression((rangeStart.toInt()..<rangeEnd.toInt()).step(step.toInt()))
+			UByteProgression((rangeStart..<rangeEnd).step(step.toInt()))
 
-		fun fromOpenEndRange(range: OpenEndRange<UByte>, step: Byte) =
-			fromOpenEndRange(range.start, range.endExclusive, step)
+		fun fromOpenEndRange(range: ClosedRange<UByte>, step: Byte) =
+			fromOpenEndRange(range.start, range.endInclusive, step)
 	}
 
 	@JvmInline

@@ -1,0 +1,40 @@
+TYPE=Short,UShort,Byte,UByte
+UNSIGNED_TYPE=Short,Short,Byte,Byte
+STDLIB_WRAPPER_TYPE=Int,UInt,Int,UInt
+@JvmInline
+value class ${TYPE}Progression internal constructor(
+	private val value: ${STDLIB_WRAPPER_TYPE}Progression,
+) : Iterable<${TYPE}> {
+	val first get() = value.first.to${TYPE}()
+	val last get() = value.last.to${TYPE}()
+	val step get() = value.step.to${TYPE}()
+
+	override fun iterator(): Iterator<${TYPE}> = ${TYPE}ProgressionIterator(value.iterator())
+
+	/**
+	 * Checks if the progression is empty.
+	 */
+	fun isEmpty() = value.isEmpty()
+
+	override fun toString() = value.toString()
+
+	companion object {
+		fun fromClosedRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${UNSIGNED_TYPE}) =
+			${TYPE}Progression((rangeStart..rangeEnd).step(step.toInt()))
+
+		fun fromClosedRange(range: ClosedRange<${TYPE}>, step: ${UNSIGNED_TYPE}) =
+			fromClosedRange(range.start, range.endInclusive, step)
+
+		fun fromOpenEndRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${UNSIGNED_TYPE}) =
+			${TYPE}Progression((rangeStart..<rangeEnd).step(step.toInt()))
+
+		fun fromOpenEndRange(range: ClosedRange<${TYPE}>, step: ${UNSIGNED_TYPE}) =
+			fromOpenEndRange(range.start, range.endInclusive, step)
+	}
+
+	@JvmInline
+	private value class ${TYPE}ProgressionIterator(private val value: Iterator<${STDLIB_WRAPPER_TYPE}>) : Iterator<${TYPE}> {
+		override fun hasNext() = value.hasNext()
+		override fun next() = value.next().to${TYPE}()
+	}
+}

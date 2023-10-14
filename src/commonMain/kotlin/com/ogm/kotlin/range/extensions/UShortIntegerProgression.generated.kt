@@ -1,3 +1,5 @@
+/** Generated file */
+
 package com.ogm.kotlin.range.extensions
 
 @JvmInline
@@ -6,7 +8,7 @@ value class UShortProgression internal constructor(
 ) : Iterable<UShort> {
 	val first get() = value.first.toUShort()
 	val last get() = value.last.toUShort()
-	val step get() = value.step.toShort()
+	val step get() = value.step.toUShort()
 
 	override fun iterator(): Iterator<UShort> = UShortProgressionIterator(value.iterator())
 
@@ -19,16 +21,16 @@ value class UShortProgression internal constructor(
 
 	companion object {
 		fun fromClosedRange(rangeStart: UShort, rangeEnd: UShort, step: Short) =
-			UShortProgression(UIntProgression.fromClosedRange(rangeStart.toUInt(), rangeEnd.toUInt(), step.toInt()))
+			UShortProgression((rangeStart..rangeEnd).step(step.toInt()))
 
 		fun fromClosedRange(range: ClosedRange<UShort>, step: Short) =
 			fromClosedRange(range.start, range.endInclusive, step)
 
 		fun fromOpenEndRange(rangeStart: UShort, rangeEnd: UShort, step: Short) =
-			UShortProgression((rangeStart.toUInt()..<rangeEnd.toUInt()).step(step.toInt()))
+			UShortProgression((rangeStart..<rangeEnd).step(step.toInt()))
 
-		fun fromOpenEndRange(range: OpenEndRange<UShort>, step: Short) =
-			fromOpenEndRange(range.start, range.endExclusive, step)
+		fun fromOpenEndRange(range: ClosedRange<UShort>, step: Short) =
+			fromOpenEndRange(range.start, range.endInclusive, step)
 	}
 
 	@JvmInline
