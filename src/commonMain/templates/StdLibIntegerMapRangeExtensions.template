@@ -1,0 +1,14 @@
+TYPE=Long,ULong,Int,UInt
+/**
+ * Map this [ClosedRange] of [T] to a [${TYPE}Range].
+ * @see [Iterable.map]
+ */
+fun <T : Comparable<T>> ClosedRange<T>.mapTo${TYPE}Range(block: (T) -> ${TYPE}): ${TYPE}Range =
+	block(start)..block(endInclusive)
+
+/**
+ * Map this [OpenEndRange] of [T] to a [${TYPE}Range].
+ * @see [Iterable.map]
+ */
+fun <T : Comparable<T>> OpenEndRange<T>.mapTo${TYPE}Range(block: (T) -> ${TYPE}): ${TYPE}Range =
+	block(start)..<block(endExclusive)

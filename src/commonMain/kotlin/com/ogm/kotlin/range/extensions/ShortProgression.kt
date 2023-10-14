@@ -18,11 +18,18 @@ value class ShortProgression internal constructor(
 	override fun toString() = value.toString()
 
 	companion object {
+
 		fun fromClosedRange(rangeStart: Short, rangeEnd: Short, step: Short) =
-			ShortProgression(IntProgression.fromClosedRange(rangeStart.toInt(), rangeEnd.toInt(), step.toInt()))
+			ShortProgression((rangeStart.toInt()..rangeEnd.toInt()).step(step.toInt()))
 
 		fun fromClosedRange(range: ClosedRange<Short>, step: Short) =
 			fromClosedRange(range.start, range.endInclusive, step)
+
+		fun fromOpenEndRange(rangeStart: Short, rangeEnd: Short, step: Short) =
+			ShortProgression((rangeStart.toInt()..<rangeEnd.toInt()).step(step.toInt()))
+
+		fun fromOpenEndRange(range: OpenEndRange<Short>, step: Short) =
+			fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline

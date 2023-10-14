@@ -23,6 +23,12 @@ value class UShortProgression internal constructor(
 
 		fun fromClosedRange(range: ClosedRange<UShort>, step: Short) =
 			fromClosedRange(range.start, range.endInclusive, step)
+
+		fun fromOpenEndRange(rangeStart: UShort, rangeEnd: UShort, step: Short) =
+			UShortProgression((rangeStart.toUInt()..<rangeEnd.toUInt()).step(step.toInt()))
+
+		fun fromOpenEndRange(range: OpenEndRange<UShort>, step: Short) =
+			fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline

@@ -23,6 +23,12 @@ value class UByteProgression internal constructor(
 
 		fun fromClosedRange(range: ClosedRange<UByte>, step: Byte) =
 			fromClosedRange(range.start, range.endInclusive, step)
+
+		fun fromOpenEndRange(rangeStart: UByte, rangeEnd: UByte, step: Byte) =
+			ShortProgression((rangeStart.toInt()..<rangeEnd.toInt()).step(step.toInt()))
+
+		fun fromOpenEndRange(range: OpenEndRange<UByte>, step: Byte) =
+			fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline

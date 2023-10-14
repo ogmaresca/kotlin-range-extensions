@@ -9,7 +9,7 @@ abstract class AbstractToLongProgression<T : Comparable<T>, TStep : Comparable<T
 	private val converter: AbstractToLongProgressionConverter<T>,
 ) : AbstractProgression<T, TStep>(start, endInclusive, step, zeroStep) {
 	private val longProgression =
-		LongProgression.fromClosedRange(converter.toLong(start), converter.toLong(endInclusive), longStep)
+		(converter.toLong(start)..converter.toLong(endInclusive)).step(longStep)
 
 	override val last
 		get() = converter.toValue(longProgression.last)

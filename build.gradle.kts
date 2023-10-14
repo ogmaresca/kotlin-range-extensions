@@ -4,13 +4,9 @@ repositories {
 }
 
 plugins {
-	val kotlinVersion = "1.7.20"
-	val spotbugsVersion = "5.0.12"
-	val spotlessVersion = "6.11.0"
-
-	kotlin("multiplatform") version kotlinVersion
-	id("com.github.spotbugs") version spotbugsVersion
-	id("com.diffplug.spotless") version spotlessVersion
+	kotlin("multiplatform") version "kotlinVersion"
+	id("com.github.spotbugs") version "spotbugsVersion"
+	id("com.diffplug.spotless") version "spotlessVersion"
 }
 
 apply(plugin = "com.github.spotbugs")
@@ -24,17 +20,18 @@ repositories {
 }
 
 kotlin {
-	// Can't use AssertJ >= 3.21.0 because of https://github.com/assertj/assertj/issues/2361
-	val assertJVersion = "3.20.2"
-	val junitVersion = "5.9.0"
-
 	jvm {
 		compilations.all {
 			kotlinOptions {
 				allWarningsAsErrors = true
-				freeCompilerArgs = listOf("-Xjsr305=warn -Xemit-java-type-annotations -java-parameters")
-				apiVersion = "1.5"
-				languageVersion = "1.7"
+				freeCompilerArgs = listOf(
+					"-Xjsr305=warn",
+					// "-Xemit-java-type-annotations",
+					"-java-parameters",
+					"-Xjvm-default=all-compatibility",
+				)
+				apiVersion = "1.9"
+				languageVersion = "1.9"
 				jvmTarget = "1.8"
 			}
 		}
@@ -58,11 +55,48 @@ kotlin {
 		@Suppress("UNUSED_VARIABLE")
 		val jvmTest by getting {
 			dependencies {
+				val assertJVersion: String by project
+				val junitVersion: String by project
+
 				implementation(kotlin("test"))
 				implementation("org.assertj:assertj-core:$assertJVersion")
 				implementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
 				implementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
 				runtimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+			}
+		}
+	}
+}
+
+val packageName = "com.ogm.kotlin.range.extensions"
+
+val generateCode by tasks.registering {
+	logger.info("Starting generateCode task")
+
+	val header = "/** Generated file */\n\npackage $packageName\n\n"
+
+	file("$rootDir/src").listFiles { it: File -> it.isDirectory }.forEach { sourceSet ->
+		logger.info("Processing $sourceSet templates")
+
+		val packageDir = "$sourceSet/kotlin/${packageName.replace('.', '/')}"
+
+		fileTree(packageDir) { include("*.generated.kt") }.forEach {
+			logger.info("Deleting generated code file $it")
+			it.delete()
+		}
+
+		fileTree("$sourceSet/templates") { include("*.template") }.forEach { template ->
+			val lines = template.readLines()
+
+			val declaration = lines.first().split("=", limit = 2)
+			val variable = declaration.first()
+			val values = declaration.last().split(",")
+
+			values.forEach {
+				val templatedFile = "$header${lines.drop(1).joinToString("\n").replace("\${$variable}", it)}\n"
+				val kotlinFile = "$packageDir/$it${template.nameWithoutExtension}.generated.kt"
+				logger.info("Generating file $kotlinFile")
+				file(kotlinFile).writeText(templatedFile, Charsets.UTF_8)
 			}
 		}
 	}

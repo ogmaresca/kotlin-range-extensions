@@ -19,10 +19,16 @@ value class ByteProgression internal constructor(
 
 	companion object {
 		fun fromClosedRange(rangeStart: Byte, rangeEnd: Byte, step: Byte) =
-			ByteProgression(IntProgression.fromClosedRange(rangeStart.toInt(), rangeEnd.toInt(), step.toInt()))
+			ByteProgression((rangeStart..rangeEnd).step(step.toInt()))
 
 		fun fromClosedRange(range: ClosedRange<Byte>, step: Byte) =
 			fromClosedRange(range.start, range.endInclusive, step)
+
+		fun fromOpenEndRange(rangeStart: Byte, rangeEnd: Byte, step: Byte) =
+			ByteProgression((rangeStart..<rangeEnd).step(step.toInt()))
+
+		fun fromOpenEndRange(range: ClosedRange<Byte>, step: Byte) =
+			fromOpenEndRange(range.start, range.endInclusive, step)
 	}
 
 	@JvmInline
