@@ -1,0 +1,18 @@
+TYPE=Long,ULong,Int,UInt,Short,UShort,Byte,UByte,Double,Float,Char
+CAST_METHOD=,,,,.toShort(),.toUShort(),.toByte(),.toUByte(),,,
+
+@JvmName("calculateOpenEnd${TYPE}RangeEndInclusive")
+fun OpenEndRange<${TYPE}>.calculateEndInclusive(): ${TYPE} = if (isEmpty()) {
+	start
+} else if (endExclusive < start) {
+	(endExclusive + minValue(endExclusive))${CAST_METHOD}
+} else {
+	(endExclusive - minValue(endExclusive))${CAST_METHOD}
+}
+
+@JvmName("calculateClosed${TYPE}RangeEndInclusive")
+fun ClosedRange<${TYPE}>.calculateEndExclusive(): ${TYPE} = if (endInclusive >= start) {
+	(endInclusive + minValue(endInclusive))${CAST_METHOD}
+} else {
+	(endInclusive - minValue(endInclusive))${CAST_METHOD}
+}

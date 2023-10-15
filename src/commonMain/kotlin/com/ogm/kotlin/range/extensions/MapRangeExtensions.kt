@@ -8,8 +8,8 @@ fun <T : Comparable<T>, R : Comparable<R>> ClosedRange<T>.mapRange(block: (T) ->
 	block(start)..block(endInclusive)
 
 /**
- * Map this [ClosedRange] of [T] to a [CharRange].
+ * Map this [ClosedRange] of [T] to a [OpenEndRange] of [R].
  * @see [Iterable.map]
  */
-fun <T : Comparable<T>> ClosedRange<T>.mapToCharRange(block: (T) -> Char): CharRange =
-	block(start)..block(endInclusive)
+fun <T : Comparable<T>, R : Comparable<R>> OpenEndRange<T>.mapRange(block: (T) -> R): OpenEndRange<R> =
+	block(start)..<block(endExclusive)

@@ -1,0 +1,28 @@
+TYPE=Long,ULong,Int,UInt,Short,UShort,Byte,UByte,Char
+CONSTRUCTOR=,,,,ShortRange,UShortRange,ByteRange,UByteRange,
+
+fun ClosedRange<${TYPE}>.as${TYPE}Range(): ${TYPE}Range = if (this is ${TYPE}Range) {
+	this
+} else {
+	${CONSTRUCTOR}(start..endInclusive)
+}
+
+@JvmName("to${TYPE}OpenEndRange")
+fun ClosedRange<${TYPE}>.toOpenEndRange(): ${TYPE}Range = if (this is ${TYPE}Range) {
+	this
+} else {
+	${CONSTRUCTOR}(start..<calculateEndExclusive())
+}
+
+fun OpenEndRange<${TYPE}>.asOpen${TYPE}Range(): ${TYPE}Range = if (this is ${TYPE}Range) {
+	this
+} else {
+	${CONSTRUCTOR}(start..endExclusive)
+}
+
+@JvmName("to${TYPE}ClosedRange")
+fun OpenEndRange<${TYPE}>.toClosedRange(): ${TYPE}Range = if (this is ${TYPE}Range) {
+	this
+} else {
+	${CONSTRUCTOR}(start..calculateEndInclusive())
+}

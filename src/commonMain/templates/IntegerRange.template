@@ -1,0 +1,31 @@
+TYPE=Short,UShort,Byte,UByte
+STDLIB_WRAPPER_TYPE=Int,UInt,Int,UInt
+@JvmInline
+value class ${TYPE}Range internal constructor(
+	private val value: ${STDLIB_WRAPPER_TYPE}Range,
+) : ClosedRange<${TYPE}>, OpenEndRange<${TYPE}>, Iterable<${TYPE}> {
+	constructor(start: ${TYPE}, endInclusive: ${TYPE}) : this(start..endInclusive)
+
+	override val start: ${TYPE} get() = value.first.to${TYPE}()
+	override val endInclusive: ${TYPE} get() = value.last.to${TYPE}()
+
+	@Suppress("DEPRECATION")
+	@Deprecated("Can throw an exception when it's impossible to represent the value with ${TYPE} type, for example, when the range includes MAX_VALUE. It's recommended to use 'endInclusive' property that doesn't throw.")
+	override val endExclusive: ${TYPE} get() = (value.endExclusive).to${TYPE}()
+
+	override fun toString(): String = "$start..$endInclusive"
+
+	override fun iterator() = ${TYPE}Progression(value).iterator()
+
+	override fun contains(value: ${TYPE}): Boolean {
+		return super<ClosedRange>.contains(value)
+	}
+
+	override fun isEmpty(): Boolean {
+		return super<ClosedRange>.isEmpty()
+	}
+
+	companion object {
+		val EMPTY = ${TYPE}Range(${TYPE}.MAX_VALUE, ${TYPE}.MIN_VALUE)
+	}
+}

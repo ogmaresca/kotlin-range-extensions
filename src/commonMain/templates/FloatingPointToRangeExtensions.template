@@ -1,0 +1,28 @@
+TYPE=Double,Float
+CLOSED_IMPLEMENTATION_TYPE=ClosedFloatingPointRange,ClosedFloatingPointRange
+OPEN_IMPLEMENTATION_TYPE=OpenEndRange,OpenEndRange
+
+fun ClosedRange<${TYPE}>.as${TYPE}Range(): ClosedFloatingPointRange<${TYPE}> = if (this is ClosedFloatingPointRange<*>) {
+	@Suppress("UNCHECKED_CAST")
+	this as ClosedFloatingPointRange<${TYPE}>
+} else {
+	start..endInclusive
+}
+
+@JvmName("to${TYPE}OpenEndRange")
+fun ClosedRange<${TYPE}>.toOpenEndRange(): OpenEndRange<${TYPE}> = if (this is OpenEndRange<*>) {
+	@Suppress("UNCHECKED_CAST")
+	this as OpenEndRange<${TYPE}>
+} else {
+	start..<calculateEndExclusive()
+}
+
+fun OpenEndRange<${TYPE}>.asOpen${TYPE}Range(): ClosedFloatingPointRange<${TYPE}> = toClosedRange()
+
+@JvmName("to${TYPE}ClosedRange")
+fun OpenEndRange<${TYPE}>.toClosedRange(): ClosedFloatingPointRange<${TYPE}> = if (this is ClosedRange<*>) {
+	 @Suppress("UNCHECKED_CAST")
+	 (this as ClosedRange<${TYPE}>).as${TYPE}Range()
+} else {
+	start..calculateEndInclusive()
+}

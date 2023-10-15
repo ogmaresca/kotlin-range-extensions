@@ -1,0 +1,66 @@
+TYPE=Short,UShort,Byte,UByte,Double,Float,Char
+RANDOM_METHOD=nextInt,nextUInt,nextInt,nextUInt,nextDouble,nextDouble,nextInt
+CONVERSION_METHOD=.toInt(),.toUInt(),.toInt(),.toUInt(),,.toDouble(),.code
+import kotlin.random.Random
+import kotlin.random.nextUInt
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
+fun Random.next${TYPE}(range: ClosedRange<${TYPE}>): ${TYPE} {
+	if (range is OpenEndRange<*>) {
+		@Suppress("UNCHECKED_CAST")
+	    return next${TYPE}Exclusive(range as OpenEndRange<${TYPE}>)
+	}
+
+	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
+	return ${RANDOM_METHOD}(range.start${CONVERSION_METHOD}, range.calculateEndExclusive()${CONVERSION_METHOD}).to${TYPE}()
+}
+
+/**
+ * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
+fun Random.next${TYPE}Exclusive(range: OpenEndRange<${TYPE}>): ${TYPE} {
+	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
+	return ${RANDOM_METHOD}(range.start${CONVERSION_METHOD}, range.endExclusive${CONVERSION_METHOD}).to${TYPE}()
+}
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
+@JvmName("randomClosed${TYPE}")
+fun ClosedRange<${TYPE}>.random(random: Random = Random.Default): ${TYPE} = try {
+	random.next${TYPE}(this)
+} catch (e: IllegalArgumentException) {
+	throw NoSuchElementException(e.message)
+}
+
+/**
+ * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
+ * If the range is empty, then null will be returned instead.
+ */
+@JvmName("randomOrNullClosed${TYPE}")
+fun ClosedRange<${TYPE}>.randomOrNull(random: Random = Random.Default): ${TYPE}? =
+	takeUnless { it.isEmpty() }?.random(random)
+
+/**
+ * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
+@JvmName("randomOpenEnd${TYPE}")
+fun OpenEndRange<${TYPE}>.randomExclusive(random: Random = Random.Default): ${TYPE} = try {
+	random.next${TYPE}Exclusive(this)
+} catch (e: IllegalArgumentException) {
+	throw NoSuchElementException(e.message)
+}
+
+/**
+ * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
+ * If the range is empty, then null will be returned instead.
+ */
+@JvmName("randomOrNullOpenEnd${TYPE}")
+fun OpenEndRange<${TYPE}>.randomOrNullExclusive(random: Random = Random.Default): ${TYPE}? =
+	takeUnless { it.isEmpty() }?.randomExclusive(random)

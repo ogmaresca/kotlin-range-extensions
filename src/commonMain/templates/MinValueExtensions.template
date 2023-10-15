@@ -1,0 +1,5 @@
+TYPE=Long,ULong,Int,UInt,Short,UShort,Byte,UByte,Double,Float,Char
+RETURN_TYPE=Long,ULong,Int,UInt,Short,UShort,Byte,UByte,Double,Float,Int
+MIN_VALUE=1L,1UL,1,1U,1,1U,1,1U,Double.MIN_VALUE,Float.MIN_VALUE,1
+
+internal fun minValue(@Suppress("UNUSED_PARAMETER") value: ${TYPE}): ${RETURN_TYPE} = ${MIN_VALUE}

@@ -19,17 +19,17 @@ value class ${TYPE}Progression internal constructor(
 	override fun toString() = value.toString()
 
 	companion object {
-		fun fromClosedRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${UNSIGNED_TYPE}) =
+		fun fromClosedRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${UNSIGNED_TYPE}): ${TYPE}Progression =
 			${TYPE}Progression((rangeStart..rangeEnd).step(step.toInt()))
 
-		fun fromClosedRange(range: ClosedRange<${TYPE}>, step: ${UNSIGNED_TYPE}) =
+		fun fromClosedRange(range: ClosedRange<${TYPE}>, step: ${UNSIGNED_TYPE}): ${TYPE}Progression =
 			fromClosedRange(range.start, range.endInclusive, step)
 
-		fun fromOpenEndRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${UNSIGNED_TYPE}) =
+		fun fromOpenEndRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${UNSIGNED_TYPE}): ${TYPE}Progression =
 			${TYPE}Progression((rangeStart..<rangeEnd).step(step.toInt()))
 
-		fun fromOpenEndRange(range: ClosedRange<${TYPE}>, step: ${UNSIGNED_TYPE}) =
-			fromOpenEndRange(range.start, range.endInclusive, step)
+		fun fromOpenEndRange(range: OpenEndRange<${TYPE}>, step: ${UNSIGNED_TYPE}): ${TYPE}Progression =
+			fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline

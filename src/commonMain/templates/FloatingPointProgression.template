@@ -1,0 +1,52 @@
+TYPE=Double,Float
+import kotlin.math.absoluteValue
+
+class ${TYPE}Progression private constructor(
+	start: ${TYPE},
+	endInclusive: ${TYPE},
+	step: ${TYPE},
+) : AbstractProgression<${TYPE}, ${TYPE}>(start, step, endInclusive, ${TYPE}.MIN_VALUE) {
+	override val last = if (isEmpty()) {
+		endInclusive
+	} else if (step > 0) {
+		val diff = endInclusive - start
+		endInclusive - (diff % step)
+	} else {
+		val diff = start - endInclusive
+		endInclusive + (diff % step.absoluteValue)
+	}
+
+	override fun iterator() = ${TYPE}ProgressionIterator()
+
+	inner class ${TYPE}ProgressionIterator : ${TYPE}Iterator() {
+		private var hasNext = !isEmpty()
+		private var next = if (hasNext) first else last
+
+		override fun hasNext() = hasNext
+
+		override fun next${TYPE}(): ${TYPE} {
+			val value = next
+			if (value == last) {
+				if (!hasNext) throw NoSuchElementException()
+				hasNext = false
+			} else {
+				next += step
+			}
+			return value
+		}
+	}
+
+	companion object {
+		fun fromClosedRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${TYPE}): ${TYPE}Progression =
+			${TYPE}Progression(rangeStart, rangeEnd, step)
+
+		fun fromClosedRange(range: ClosedRange<${TYPE}>, step: ${TYPE}): ${TYPE}Progression =
+			fromClosedRange(range.start, range.endInclusive, step)
+
+		fun fromOpenEndRange(rangeStart: ${TYPE}, rangeEnd: ${TYPE}, step: ${TYPE}): ${TYPE}Progression =
+			fromOpenEndRange(rangeStart..<rangeEnd, step)
+
+		fun fromOpenEndRange(range: OpenEndRange<${TYPE}>, step: ${TYPE}): ${TYPE}Progression =
+			fromClosedRange(range.start, range.calculateEndInclusive(), step)
+	}
+}

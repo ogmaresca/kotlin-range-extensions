@@ -1,0 +1,12 @@
+TYPE=Long,ULong,Int,UInt,Short,UShort,Byte,UByte,Double,Float,Char
+/**
+ * Reverse this [ClosedRange]
+ */
+@JvmName("reversed${TYPE}")
+fun ClosedRange<${TYPE}>.reversed() = (endInclusive..start).to${TYPE}Range()
+
+/**
+ * Reverse this [OpenEndRange]
+ */
+@JvmName("reversed${TYPE}OpenEndRange")
+fun OpenEndRange<${TYPE}>.reversedOpenEndRange() = (calculateEndInclusive()..start).to${TYPE}Range()

@@ -1,0 +1,20 @@
+TYPE=Long,ULong,Int,UInt,Short,UShort,Byte,UByte,Double,Float,Char
+/**
+ * Convert this [ClosedRange] to a range where [ClosedRange.start] is less than or equal to [ClosedRange.endInclusive]
+ */
+@JvmName("toIncremental${TYPE}Range")
+fun ClosedRange<${TYPE}>.toIncrementalRange() = if (isIncremental()) {
+	as${TYPE}Range()
+} else {
+	reversed()
+}
+
+/**
+ * Convert this [OpenEndRange] to a range where [OpenEndRange.start] is less than [OpenEndRange.endExclusive]
+ */
+@JvmName("toIncremental${TYPE}OpenEndRangeRange")
+fun OpenEndRange<${TYPE}>.toIncrementalOpenEndRangeRange() = if (isIncrementalOpenEndRange()) {
+	asOpen${TYPE}Range()
+} else {
+	reversedOpenEndRange()
+}

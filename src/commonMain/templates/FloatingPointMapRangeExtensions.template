@@ -1,7 +1,14 @@
 TYPE=Double,Float
 /**
- * Map this [ClosedRange] of [T] to a [Closed${TYPE}Range].
+ * Map this [ClosedRange] of [T] to a [ClosedFloatingPointRange].
  * @see [Iterable.map]
  */
 fun <T : Comparable<T>> ClosedRange<T>.mapTo${TYPE}Range(block: (T) -> ${TYPE}): ClosedFloatingPointRange<${TYPE}> =
 	block(start)..block(endInclusive)
+
+/**
+ * Map this [OpenEndRange] of [T] to a [OpenEndRange].
+ * @see [Iterable.map]
+ */
+fun <T : Comparable<T>> OpenEndRange<T>.mapTo${TYPE}OpenEndRange(block: (T) -> ${TYPE}): OpenEndRange<${TYPE}> =
+	block(start)..<block(endExclusive)

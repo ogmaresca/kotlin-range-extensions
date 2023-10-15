@@ -1,0 +1,16 @@
+TYPE=Short,UShort,Byte,UByte,Double,Float,Char
+STEP_TYPE=Short,Short,Byte,Byte,Double,Float,Int
+DEFAULT=1,1,1,1,1.0,1.0F,1
+/**
+ * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
+fun ClosedRange<${TYPE}>.step(step: ${STEP_TYPE} = ${DEFAULT}): ${TYPE}Progression = ${TYPE}Progression.fromClosedRange(this, step)
+
+/**
+ * Create an [Iterable] from [OpenEndRange.start] to [OpenEndRange.endExclusive], with each
+ * value having a value of the size of [step] after the last value.
+ * @throws [NoSuchElementException] If the range is empty.
+ */
+fun OpenEndRange<${TYPE}>.step(step: ${STEP_TYPE} = ${DEFAULT}): ${TYPE}Progression = ${TYPE}Progression.fromOpenEndRange(this, step)
