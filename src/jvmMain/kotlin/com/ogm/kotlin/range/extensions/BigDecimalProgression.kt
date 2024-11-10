@@ -2,11 +2,7 @@ package com.ogm.kotlin.range.extensions
 
 import java.math.BigDecimal
 
-class BigDecimalProgression private constructor(
-	start: BigDecimal,
-	endInclusive: BigDecimal,
-	step: BigDecimal,
-) : AbstractProgression<BigDecimal, BigDecimal>(start, endInclusive, step, BigDecimal.ZERO) {
+class BigDecimalProgression private constructor(start: BigDecimal, endInclusive: BigDecimal, step: BigDecimal) : AbstractProgression<BigDecimal, BigDecimal>(start, endInclusive, step, BigDecimal.ZERO) {
 	override val last = if (isEmpty()) {
 		endInclusive
 	} else if (step > zeroStep) {
@@ -38,10 +34,8 @@ class BigDecimalProgression private constructor(
 	}
 
 	companion object {
-		fun fromClosedRange(rangeStart: BigDecimal, rangeEnd: BigDecimal, step: BigDecimal) =
-			BigDecimalProgression(rangeStart, rangeEnd, step)
+		fun fromClosedRange(rangeStart: BigDecimal, rangeEnd: BigDecimal, step: BigDecimal) = BigDecimalProgression(rangeStart, rangeEnd, step)
 
-		fun fromClosedRange(range: ClosedRange<BigDecimal>, step: BigDecimal) =
-			fromClosedRange(range.start, range.endInclusive, step)
+		fun fromClosedRange(range: ClosedRange<BigDecimal>, step: BigDecimal) = fromClosedRange(range.start, range.endInclusive, step)
 	}
 }

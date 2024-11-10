@@ -5,6 +5,7 @@ import java.time.Period
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatExceptionOfType
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 
 class LocalDateTests {
@@ -136,16 +137,9 @@ class LocalDateTests {
 			now.minusMonths(10).plusXTimes(monthPeriod, 9),
 		)
 
-		assertThat((now.minusDays(10)..now.plusDays(10)).step(Period.ofDays(-1)))
-			.satisfies {
-				assertThat((it as LocalDateProgression).isEmpty()).isTrue
-				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
-				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(10))
-				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)} downTo ${now.plusDays(10)} step P-1D",
-				)
-				assertThat(it.hashCode()).isEqualTo(-1)
-			}
+		assertThatIllegalArgumentException().isThrownBy {
+			(now.minusDays(10)..now.plusDays(10)).step(Period.ofDays(-1))
+		}.withMessage("Step must be positive, was: -1.")
 
 		assertThatExceptionOfType(NoSuchElementException::class.java).isThrownBy {
 			(now..now.minusDays(1)).step(Period.ofDays(1)).iterator().next()
@@ -230,16 +224,9 @@ class LocalDateTests {
 			now.minusMonths(10).plusXTimes(monthPeriod, 9),
 		)
 
-		assertThat((now.plusDays(10) downTo now.minusDays(10)).step(Period.ofDays(-1)))
-			.satisfies {
-				assertThat((it as LocalDateProgression).isEmpty()).isTrue
-				assertThat((it as LocalDateProgression).first).isEqualTo(now.minusDays(10))
-				assertThat((it as LocalDateProgression).last).isEqualTo(now.plusDays(10))
-				assertThat(it.toString()).isEqualTo(
-					"${now.minusDays(10)} downTo ${now.plusDays(10)} step P-1D",
-				)
-				assertThat(it.hashCode()).isEqualTo(-1)
-			}
+		assertThatIllegalArgumentException().isThrownBy {
+			(now.plusDays(10) downTo now.minusDays(10)).step(Period.ofDays(-1))
+		}.withMessage("Step must be positive, was: -1.")
 
 		assertThatExceptionOfType(NoSuchElementException::class.java).isThrownBy {
 			(now.minusDays(1) downTo now).step(Period.ofDays(1)).iterator().next()
@@ -330,7 +317,6 @@ class LocalDateTests {
 	}
 
 	private companion object {
-		private fun LocalDate.plusXTimes(period: Period, times: Int) =
-			List(times) { period }.fold(this) { acc, it -> acc + it }
+		private fun LocalDate.plusXTimes(period: Period, times: Int) = List(times) { period }.fold(this) { acc, it -> acc + it }
 	}
 }

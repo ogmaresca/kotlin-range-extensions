@@ -3,18 +3,15 @@ package com.ogm.kotlin.range.extensions
 import java.time.LocalDate
 import java.time.Period
 
-class LocalDateProgression private constructor(
-	start: LocalDate,
-	endInclusive: LocalDate,
-	normalizedStep: Period,
-) : AbstractToLongProgression<LocalDate, PeriodComparableWrapper>(
-	start,
-	endInclusive,
-	normalizedStep.normalized().toComparable(),
-	normalizedStep.days.toLong(),
-	PeriodComparableWrapper.ZERO,
-	LocalDateToLongConverter,
-) {
+class LocalDateProgression private constructor(start: LocalDate, endInclusive: LocalDate, normalizedStep: Period) :
+	AbstractToLongProgression<LocalDate, PeriodComparableWrapper>(
+		start,
+		endInclusive,
+		normalizedStep.normalized().toComparable(),
+		normalizedStep.days.toLong(),
+		PeriodComparableWrapper.ZERO,
+		LocalDateToLongConverter,
+	) {
 	private val calculatedProgression: List<LocalDate>? by lazy {
 		val period = step.toPeriod()
 		val totalMonths = period.toTotalMonths()
@@ -44,10 +41,8 @@ class LocalDateProgression private constructor(
 	}
 
 	companion object {
-		fun fromClosedRange(rangeStart: LocalDate, rangeEnd: LocalDate, step: Period) =
-			LocalDateProgression(rangeStart, rangeEnd, step)
+		fun fromClosedRange(rangeStart: LocalDate, rangeEnd: LocalDate, step: Period) = LocalDateProgression(rangeStart, rangeEnd, step)
 
-		fun fromClosedRange(range: ClosedRange<LocalDate>, step: Period) =
-			fromClosedRange(range.start, range.endInclusive, step)
+		fun fromClosedRange(range: ClosedRange<LocalDate>, step: Period) = fromClosedRange(range.start, range.endInclusive, step)
 	}
 }

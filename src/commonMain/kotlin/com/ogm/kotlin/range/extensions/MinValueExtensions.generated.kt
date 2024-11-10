@@ -2,7 +2,6 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 internal fun minValue(@Suppress("UNUSED_PARAMETER") value: Long): Long = 1L
 
 internal fun minValue(@Suppress("UNUSED_PARAMETER") value: ULong): ULong = 1UL

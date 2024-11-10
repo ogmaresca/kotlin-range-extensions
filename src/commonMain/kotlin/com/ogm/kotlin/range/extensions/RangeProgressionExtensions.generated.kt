@@ -2,7 +2,6 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
  * value having a value of the size of [step] after the last value.

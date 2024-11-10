@@ -2,12 +2,10 @@ package com.ogm.kotlin.range.extensions
 
 import java.math.BigInteger
 
-data class BigIntegerRange(
-	override val start: BigInteger,
-	override val endInclusive: BigInteger,
-) : ClosedRange<BigInteger>, Iterable<BigInteger> {
-	override fun iterator(): Iterator<BigInteger> =
-		BigIntegerProgression.fromClosedRange(this, BigInteger.valueOf(1L)).iterator()
+data class BigIntegerRange(override val start: BigInteger, override val endInclusive: BigInteger) :
+	ClosedRange<BigInteger>,
+	Iterable<BigInteger> {
+	override fun iterator(): Iterator<BigInteger> = BigIntegerProgression.fromClosedRange(this, BigInteger.valueOf(1L)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

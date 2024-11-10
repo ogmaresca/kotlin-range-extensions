@@ -2,11 +2,11 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 @JvmInline
-value class ShortRange internal constructor(
-	private val value: IntRange,
-) : ClosedRange<Short>, OpenEndRange<Short>, Iterable<Short> {
+value class ShortRange internal constructor(private val value: IntRange) :
+	ClosedRange<Short>,
+	OpenEndRange<Short>,
+	Iterable<Short> {
 	constructor(start: Short, endInclusive: Short) : this(start..endInclusive)
 
 	override val start: Short get() = value.first.toShort()
@@ -20,13 +20,9 @@ value class ShortRange internal constructor(
 
 	override fun iterator() = ShortProgression(value).iterator()
 
-	override fun contains(value: Short): Boolean {
-		return super<ClosedRange>.contains(value)
-	}
+	override fun contains(value: Short): Boolean = super<ClosedRange>.contains(value)
 
-	override fun isEmpty(): Boolean {
-		return super<ClosedRange>.isEmpty()
-	}
+	override fun isEmpty(): Boolean = super<ClosedRange>.isEmpty()
 
 	companion object {
 		val EMPTY = ShortRange(Short.MAX_VALUE, Short.MIN_VALUE)
@@ -34,9 +30,10 @@ value class ShortRange internal constructor(
 }
 
 @JvmInline
-value class UShortRange internal constructor(
-	private val value: UIntRange,
-) : ClosedRange<UShort>, OpenEndRange<UShort>, Iterable<UShort> {
+value class UShortRange internal constructor(private val value: UIntRange) :
+	ClosedRange<UShort>,
+	OpenEndRange<UShort>,
+	Iterable<UShort> {
 	constructor(start: UShort, endInclusive: UShort) : this(start..endInclusive)
 
 	override val start: UShort get() = value.first.toUShort()
@@ -50,13 +47,9 @@ value class UShortRange internal constructor(
 
 	override fun iterator() = UShortProgression(value).iterator()
 
-	override fun contains(value: UShort): Boolean {
-		return super<ClosedRange>.contains(value)
-	}
+	override fun contains(value: UShort): Boolean = super<ClosedRange>.contains(value)
 
-	override fun isEmpty(): Boolean {
-		return super<ClosedRange>.isEmpty()
-	}
+	override fun isEmpty(): Boolean = super<ClosedRange>.isEmpty()
 
 	companion object {
 		val EMPTY = UShortRange(UShort.MAX_VALUE, UShort.MIN_VALUE)
@@ -64,9 +57,10 @@ value class UShortRange internal constructor(
 }
 
 @JvmInline
-value class ByteRange internal constructor(
-	private val value: IntRange,
-) : ClosedRange<Byte>, OpenEndRange<Byte>, Iterable<Byte> {
+value class ByteRange internal constructor(private val value: IntRange) :
+	ClosedRange<Byte>,
+	OpenEndRange<Byte>,
+	Iterable<Byte> {
 	constructor(start: Byte, endInclusive: Byte) : this(start..endInclusive)
 
 	override val start: Byte get() = value.first.toByte()
@@ -80,13 +74,9 @@ value class ByteRange internal constructor(
 
 	override fun iterator() = ByteProgression(value).iterator()
 
-	override fun contains(value: Byte): Boolean {
-		return super<ClosedRange>.contains(value)
-	}
+	override fun contains(value: Byte): Boolean = super<ClosedRange>.contains(value)
 
-	override fun isEmpty(): Boolean {
-		return super<ClosedRange>.isEmpty()
-	}
+	override fun isEmpty(): Boolean = super<ClosedRange>.isEmpty()
 
 	companion object {
 		val EMPTY = ByteRange(Byte.MAX_VALUE, Byte.MIN_VALUE)
@@ -94,9 +84,10 @@ value class ByteRange internal constructor(
 }
 
 @JvmInline
-value class UByteRange internal constructor(
-	private val value: UIntRange,
-) : ClosedRange<UByte>, OpenEndRange<UByte>, Iterable<UByte> {
+value class UByteRange internal constructor(private val value: UIntRange) :
+	ClosedRange<UByte>,
+	OpenEndRange<UByte>,
+	Iterable<UByte> {
 	constructor(start: UByte, endInclusive: UByte) : this(start..endInclusive)
 
 	override val start: UByte get() = value.first.toUByte()
@@ -110,13 +101,9 @@ value class UByteRange internal constructor(
 
 	override fun iterator() = UByteProgression(value).iterator()
 
-	override fun contains(value: UByte): Boolean {
-		return super<ClosedRange>.contains(value)
-	}
+	override fun contains(value: UByte): Boolean = super<ClosedRange>.contains(value)
 
-	override fun isEmpty(): Boolean {
-		return super<ClosedRange>.isEmpty()
-	}
+	override fun isEmpty(): Boolean = super<ClosedRange>.isEmpty()
 
 	companion object {
 		val EMPTY = UByteRange(UByte.MAX_VALUE, UByte.MIN_VALUE)

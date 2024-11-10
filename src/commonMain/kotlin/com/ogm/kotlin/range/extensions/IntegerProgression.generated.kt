@@ -2,11 +2,8 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 @JvmInline
-value class ShortProgression internal constructor(
-	private val value: IntProgression,
-) : Iterable<Short> {
+value class ShortProgression internal constructor(private val value: IntProgression) : Iterable<Short> {
 	val first get() = value.first.toShort()
 	val last get() = value.last.toShort()
 	val step get() = value.step.toShort()
@@ -21,17 +18,13 @@ value class ShortProgression internal constructor(
 	override fun toString() = value.toString()
 
 	companion object {
-		fun fromClosedRange(rangeStart: Short, rangeEnd: Short, step: Short): ShortProgression =
-			ShortProgression((rangeStart..rangeEnd).step(step.toInt()))
+		fun fromClosedRange(rangeStart: Short, rangeEnd: Short, step: Short): ShortProgression = ShortProgression((rangeStart..rangeEnd).step(step.toInt()))
 
-		fun fromClosedRange(range: ClosedRange<Short>, step: Short): ShortProgression =
-			fromClosedRange(range.start, range.endInclusive, step)
+		fun fromClosedRange(range: ClosedRange<Short>, step: Short): ShortProgression = fromClosedRange(range.start, range.endInclusive, step)
 
-		fun fromOpenEndRange(rangeStart: Short, rangeEnd: Short, step: Short): ShortProgression =
-			ShortProgression((rangeStart..<rangeEnd).step(step.toInt()))
+		fun fromOpenEndRange(rangeStart: Short, rangeEnd: Short, step: Short): ShortProgression = ShortProgression((rangeStart..<rangeEnd).step(step.toInt()))
 
-		fun fromOpenEndRange(range: OpenEndRange<Short>, step: Short): ShortProgression =
-			fromOpenEndRange(range.start, range.endExclusive, step)
+		fun fromOpenEndRange(range: OpenEndRange<Short>, step: Short): ShortProgression = fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline
@@ -42,9 +35,7 @@ value class ShortProgression internal constructor(
 }
 
 @JvmInline
-value class UShortProgression internal constructor(
-	private val value: UIntProgression,
-) : Iterable<UShort> {
+value class UShortProgression internal constructor(private val value: UIntProgression) : Iterable<UShort> {
 	val first get() = value.first.toUShort()
 	val last get() = value.last.toUShort()
 	val step get() = value.step.toUShort()
@@ -59,17 +50,13 @@ value class UShortProgression internal constructor(
 	override fun toString() = value.toString()
 
 	companion object {
-		fun fromClosedRange(rangeStart: UShort, rangeEnd: UShort, step: Short): UShortProgression =
-			UShortProgression((rangeStart..rangeEnd).step(step.toInt()))
+		fun fromClosedRange(rangeStart: UShort, rangeEnd: UShort, step: Short): UShortProgression = UShortProgression((rangeStart..rangeEnd).step(step.toInt()))
 
-		fun fromClosedRange(range: ClosedRange<UShort>, step: Short): UShortProgression =
-			fromClosedRange(range.start, range.endInclusive, step)
+		fun fromClosedRange(range: ClosedRange<UShort>, step: Short): UShortProgression = fromClosedRange(range.start, range.endInclusive, step)
 
-		fun fromOpenEndRange(rangeStart: UShort, rangeEnd: UShort, step: Short): UShortProgression =
-			UShortProgression((rangeStart..<rangeEnd).step(step.toInt()))
+		fun fromOpenEndRange(rangeStart: UShort, rangeEnd: UShort, step: Short): UShortProgression = UShortProgression((rangeStart..<rangeEnd).step(step.toInt()))
 
-		fun fromOpenEndRange(range: OpenEndRange<UShort>, step: Short): UShortProgression =
-			fromOpenEndRange(range.start, range.endExclusive, step)
+		fun fromOpenEndRange(range: OpenEndRange<UShort>, step: Short): UShortProgression = fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline
@@ -80,9 +67,7 @@ value class UShortProgression internal constructor(
 }
 
 @JvmInline
-value class ByteProgression internal constructor(
-	private val value: IntProgression,
-) : Iterable<Byte> {
+value class ByteProgression internal constructor(private val value: IntProgression) : Iterable<Byte> {
 	val first get() = value.first.toByte()
 	val last get() = value.last.toByte()
 	val step get() = value.step.toByte()
@@ -97,17 +82,13 @@ value class ByteProgression internal constructor(
 	override fun toString() = value.toString()
 
 	companion object {
-		fun fromClosedRange(rangeStart: Byte, rangeEnd: Byte, step: Byte): ByteProgression =
-			ByteProgression((rangeStart..rangeEnd).step(step.toInt()))
+		fun fromClosedRange(rangeStart: Byte, rangeEnd: Byte, step: Byte): ByteProgression = ByteProgression((rangeStart..rangeEnd).step(step.toInt()))
 
-		fun fromClosedRange(range: ClosedRange<Byte>, step: Byte): ByteProgression =
-			fromClosedRange(range.start, range.endInclusive, step)
+		fun fromClosedRange(range: ClosedRange<Byte>, step: Byte): ByteProgression = fromClosedRange(range.start, range.endInclusive, step)
 
-		fun fromOpenEndRange(rangeStart: Byte, rangeEnd: Byte, step: Byte): ByteProgression =
-			ByteProgression((rangeStart..<rangeEnd).step(step.toInt()))
+		fun fromOpenEndRange(rangeStart: Byte, rangeEnd: Byte, step: Byte): ByteProgression = ByteProgression((rangeStart..<rangeEnd).step(step.toInt()))
 
-		fun fromOpenEndRange(range: OpenEndRange<Byte>, step: Byte): ByteProgression =
-			fromOpenEndRange(range.start, range.endExclusive, step)
+		fun fromOpenEndRange(range: OpenEndRange<Byte>, step: Byte): ByteProgression = fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline
@@ -118,9 +99,7 @@ value class ByteProgression internal constructor(
 }
 
 @JvmInline
-value class UByteProgression internal constructor(
-	private val value: UIntProgression,
-) : Iterable<UByte> {
+value class UByteProgression internal constructor(private val value: UIntProgression) : Iterable<UByte> {
 	val first get() = value.first.toUByte()
 	val last get() = value.last.toUByte()
 	val step get() = value.step.toUByte()
@@ -135,17 +114,13 @@ value class UByteProgression internal constructor(
 	override fun toString() = value.toString()
 
 	companion object {
-		fun fromClosedRange(rangeStart: UByte, rangeEnd: UByte, step: Byte): UByteProgression =
-			UByteProgression((rangeStart..rangeEnd).step(step.toInt()))
+		fun fromClosedRange(rangeStart: UByte, rangeEnd: UByte, step: Byte): UByteProgression = UByteProgression((rangeStart..rangeEnd).step(step.toInt()))
 
-		fun fromClosedRange(range: ClosedRange<UByte>, step: Byte): UByteProgression =
-			fromClosedRange(range.start, range.endInclusive, step)
+		fun fromClosedRange(range: ClosedRange<UByte>, step: Byte): UByteProgression = fromClosedRange(range.start, range.endInclusive, step)
 
-		fun fromOpenEndRange(rangeStart: UByte, rangeEnd: UByte, step: Byte): UByteProgression =
-			UByteProgression((rangeStart..<rangeEnd).step(step.toInt()))
+		fun fromOpenEndRange(rangeStart: UByte, rangeEnd: UByte, step: Byte): UByteProgression = UByteProgression((rangeStart..<rangeEnd).step(step.toInt()))
 
-		fun fromOpenEndRange(range: OpenEndRange<UByte>, step: Byte): UByteProgression =
-			fromOpenEndRange(range.start, range.endExclusive, step)
+		fun fromOpenEndRange(range: OpenEndRange<UByte>, step: Byte): UByteProgression = fromOpenEndRange(range.start, range.endExclusive, step)
 	}
 
 	@JvmInline

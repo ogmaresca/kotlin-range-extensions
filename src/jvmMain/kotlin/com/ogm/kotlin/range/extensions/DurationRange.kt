@@ -2,12 +2,10 @@ package com.ogm.kotlin.range.extensions
 
 import java.time.Duration
 
-data class DurationRange(
-	override val start: Duration,
-	override val endInclusive: Duration,
-) : ClosedRange<Duration>, Iterable<Duration> {
-	override fun iterator(): Iterator<Duration> =
-		DurationProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
+data class DurationRange(override val start: Duration, override val endInclusive: Duration) :
+	ClosedRange<Duration>,
+	Iterable<Duration> {
+	override fun iterator(): Iterator<Duration> = DurationProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

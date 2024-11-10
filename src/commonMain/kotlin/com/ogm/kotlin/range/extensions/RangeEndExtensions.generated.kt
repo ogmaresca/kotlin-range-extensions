@@ -2,7 +2,6 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 @JvmName("calculateOpenEndLongRangeEndInclusive")
 fun OpenEndRange<Long>.calculateEndInclusive(): Long = if (isEmpty()) {
 	start

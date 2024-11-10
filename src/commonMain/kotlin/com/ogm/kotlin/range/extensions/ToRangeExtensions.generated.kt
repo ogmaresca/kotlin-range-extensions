@@ -2,7 +2,6 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 fun ClosedRange<Long>.asLongRange(): LongRange = if (this is LongRange) {
 	this
 } else {

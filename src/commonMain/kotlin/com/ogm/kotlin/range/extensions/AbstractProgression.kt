@@ -1,11 +1,6 @@
 package com.ogm.kotlin.range.extensions
 
-abstract class AbstractProgression<T : Comparable<T>, TStep : Comparable<TStep>> protected constructor(
-	start: T,
-	endInclusive: T,
-	val step: TStep,
-	protected val zeroStep: TStep,
-) : Iterable<T> {
+abstract class AbstractProgression<T : Comparable<T>, TStep : Comparable<TStep>> protected constructor(start: T, endInclusive: T, val step: TStep, protected val zeroStep: TStep) : Iterable<T> {
 	init {
 		require(step.compareTo(zeroStep) != 0) { "Step must be non-zero()." }
 	}

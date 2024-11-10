@@ -3,12 +3,10 @@ package com.ogm.kotlin.range.extensions
 import java.time.Period
 import java.time.YearMonth
 
-data class YearMonthRange(
-	override val start: YearMonth,
-	override val endInclusive: YearMonth,
-) : ClosedRange<YearMonth>, Iterable<YearMonth> {
-	override fun iterator(): Iterator<YearMonth> =
-		YearMonthProgression.fromClosedRange(this, Period.ofDays(1)).iterator()
+data class YearMonthRange(override val start: YearMonth, override val endInclusive: YearMonth) :
+	ClosedRange<YearMonth>,
+	Iterable<YearMonth> {
+	override fun iterator(): Iterator<YearMonth> = YearMonthProgression.fromClosedRange(this, Period.ofDays(1)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

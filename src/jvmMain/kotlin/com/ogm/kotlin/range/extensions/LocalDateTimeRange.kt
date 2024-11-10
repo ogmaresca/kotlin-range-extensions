@@ -4,12 +4,10 @@ import java.time.Duration
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 
-data class LocalDateTimeRange(
-	override val start: LocalDateTime,
-	override val endInclusive: LocalDateTime,
-) : ClosedRange<LocalDateTime>, Iterable<LocalDateTime> {
-	override fun iterator(): Iterator<LocalDateTime> =
-		LocalDateTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
+data class LocalDateTimeRange(override val start: LocalDateTime, override val endInclusive: LocalDateTime) :
+	ClosedRange<LocalDateTime>,
+	Iterable<LocalDateTime> {
+	override fun iterator(): Iterator<LocalDateTime> = LocalDateTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

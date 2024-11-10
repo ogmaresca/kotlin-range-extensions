@@ -4,12 +4,10 @@ import java.time.Month
 import java.time.MonthDay
 import java.time.Period
 
-data class MonthDayRange(
-	override val start: MonthDay,
-	override val endInclusive: MonthDay,
-) : ClosedRange<MonthDay>, Iterable<MonthDay> {
-	override fun iterator(): Iterator<MonthDay> =
-		MonthDayProgression.fromClosedRange(this, Period.ofDays(1)).iterator()
+data class MonthDayRange(override val start: MonthDay, override val endInclusive: MonthDay) :
+	ClosedRange<MonthDay>,
+	Iterable<MonthDay> {
+	override fun iterator(): Iterator<MonthDay> = MonthDayProgression.fromClosedRange(this, Period.ofDays(1)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

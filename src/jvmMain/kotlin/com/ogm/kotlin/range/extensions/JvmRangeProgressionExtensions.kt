@@ -23,8 +23,7 @@ import java.time.temporal.TemporalUnit
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepBigInteger")
-fun ClosedRange<BigInteger>.step(step: BigInteger) =
-	BigIntegerProgression.fromClosedRange(this, step)
+fun ClosedRange<BigInteger>.step(step: BigInteger) = BigIntegerProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -40,8 +39,7 @@ fun ClosedRange<BigInteger>.step(step: Long) = step(BigInteger.valueOf(step))
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepBigDecimal")
-fun ClosedRange<BigDecimal>.step(step: BigDecimal) =
-	BigDecimalProgression.fromClosedRange(this, step)
+fun ClosedRange<BigDecimal>.step(step: BigDecimal) = BigDecimalProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -49,8 +47,7 @@ fun ClosedRange<BigDecimal>.step(step: BigDecimal) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepDuration")
-fun ClosedRange<Duration>.step(step: Duration) =
-	DurationProgression.fromClosedRange(this, step)
+fun ClosedRange<Duration>.step(step: Duration) = DurationProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -58,8 +55,7 @@ fun ClosedRange<Duration>.step(step: Duration) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepDuration")
-fun ClosedRange<Duration>.step(stepSize: Long, stepUnit: TemporalUnit) =
-	DurationProgression.fromClosedRange(this, stepSize, stepUnit)
+fun ClosedRange<Duration>.step(stepSize: Long, stepUnit: TemporalUnit) = DurationProgression.fromClosedRange(this, stepSize, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -67,8 +63,7 @@ fun ClosedRange<Duration>.step(stepSize: Long, stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepDuration")
-fun ClosedRange<Duration>.step(stepUnit: TemporalUnit) =
-	DurationProgression.fromClosedRange(this, stepUnit)
+fun ClosedRange<Duration>.step(stepUnit: TemporalUnit) = DurationProgression.fromClosedRange(this, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -76,8 +71,7 @@ fun ClosedRange<Duration>.step(stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepInstant")
-fun ClosedRange<Instant>.step(step: Duration) =
-	InstantProgression.fromClosedRange(this, step)
+fun ClosedRange<Instant>.step(step: Duration) = InstantProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -85,8 +79,7 @@ fun ClosedRange<Instant>.step(step: Duration) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepInstant")
-fun ClosedRange<Instant>.step(stepSize: Long, stepUnit: TemporalUnit) =
-	InstantProgression.fromClosedRange(this, stepSize, stepUnit)
+fun ClosedRange<Instant>.step(stepSize: Long, stepUnit: TemporalUnit) = InstantProgression.fromClosedRange(this, stepSize, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -94,8 +87,7 @@ fun ClosedRange<Instant>.step(stepSize: Long, stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepInstant")
-fun ClosedRange<Instant>.step(stepUnit: TemporalUnit) =
-	InstantProgression.fromClosedRange(this, stepUnit)
+fun ClosedRange<Instant>.step(stepUnit: TemporalUnit) = InstantProgression.fromClosedRange(this, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -103,8 +95,7 @@ fun ClosedRange<Instant>.step(stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepLocalDate")
-fun ClosedRange<LocalDate>.step(step: Period) =
-	LocalDateProgression.fromClosedRange(this, step)
+fun ClosedRange<LocalDate>.step(step: Period) = LocalDateProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -112,8 +103,7 @@ fun ClosedRange<LocalDate>.step(step: Period) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepLocalDateTime")
-fun ClosedRange<LocalDateTime>.step(step: Duration) =
-	LocalDateTimeProgression.fromClosedRange(this, step)
+fun ClosedRange<LocalDateTime>.step(step: Duration) = LocalDateTimeProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -121,8 +111,7 @@ fun ClosedRange<LocalDateTime>.step(step: Duration) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepLocalDateTime")
-fun ClosedRange<LocalDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
-	LocalDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
+fun ClosedRange<LocalDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) = LocalDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -130,8 +119,7 @@ fun ClosedRange<LocalDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepLocalDateTime")
-fun ClosedRange<LocalDateTime>.step(stepUnit: TemporalUnit) =
-	LocalDateTimeProgression.fromClosedRange(this, stepUnit)
+fun ClosedRange<LocalDateTime>.step(stepUnit: TemporalUnit) = LocalDateTimeProgression.fromClosedRange(this, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -139,8 +127,7 @@ fun ClosedRange<LocalDateTime>.step(stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepLocalTime")
-fun ClosedRange<LocalTime>.step(step: Duration) =
-	LocalTimeProgression.fromClosedRange(this, step)
+fun ClosedRange<LocalTime>.step(step: Duration) = LocalTimeProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -148,8 +135,7 @@ fun ClosedRange<LocalTime>.step(step: Duration) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepLocalTime")
-fun ClosedRange<LocalTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
-	LocalTimeProgression.fromClosedRange(this, stepSize, stepUnit)
+fun ClosedRange<LocalTime>.step(stepSize: Long, stepUnit: TemporalUnit) = LocalTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -157,8 +143,7 @@ fun ClosedRange<LocalTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepLocalTime")
-fun ClosedRange<LocalTime>.step(stepUnit: TemporalUnit) =
-	LocalTimeProgression.fromClosedRange(this, stepUnit)
+fun ClosedRange<LocalTime>.step(stepUnit: TemporalUnit) = LocalTimeProgression.fromClosedRange(this, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -166,8 +151,7 @@ fun ClosedRange<LocalTime>.step(stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepMonthDay")
-fun ClosedRange<MonthDay>.step(step: Period) =
-	MonthDayProgression.fromClosedRange(this, step)
+fun ClosedRange<MonthDay>.step(step: Period) = MonthDayProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -175,8 +159,7 @@ fun ClosedRange<MonthDay>.step(step: Period) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepMonthDay")
-fun ClosedRange<MonthDay>.step(years: Int, days: Int) =
-	MonthDayProgression.fromClosedRange(this, years, days)
+fun ClosedRange<MonthDay>.step(years: Int, days: Int) = MonthDayProgression.fromClosedRange(this, years, days)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -184,8 +167,7 @@ fun ClosedRange<MonthDay>.step(years: Int, days: Int) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepOffsetDateTime")
-fun ClosedRange<OffsetDateTime>.step(step: Duration) =
-	OffsetDateTimeProgression.fromClosedRange(this, step)
+fun ClosedRange<OffsetDateTime>.step(step: Duration) = OffsetDateTimeProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -193,8 +175,7 @@ fun ClosedRange<OffsetDateTime>.step(step: Duration) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepOffsetDateTime")
-fun ClosedRange<OffsetDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
-	OffsetDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
+fun ClosedRange<OffsetDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) = OffsetDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -202,8 +183,7 @@ fun ClosedRange<OffsetDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepOffsetDateTime")
-fun ClosedRange<OffsetDateTime>.step(stepUnit: TemporalUnit) =
-	OffsetDateTimeProgression.fromClosedRange(this, stepUnit)
+fun ClosedRange<OffsetDateTime>.step(stepUnit: TemporalUnit) = OffsetDateTimeProgression.fromClosedRange(this, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -211,8 +191,7 @@ fun ClosedRange<OffsetDateTime>.step(stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepYearMonth")
-fun ClosedRange<YearMonth>.step(step: Period) =
-	YearMonthProgression.fromClosedRange(this, step)
+fun ClosedRange<YearMonth>.step(step: Period) = YearMonthProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -220,8 +199,7 @@ fun ClosedRange<YearMonth>.step(step: Period) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepYearMonth")
-fun ClosedRange<YearMonth>.step(years: Int, months: Int) =
-	YearMonthProgression.fromClosedRange(this, years, months)
+fun ClosedRange<YearMonth>.step(years: Int, months: Int) = YearMonthProgression.fromClosedRange(this, years, months)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -229,8 +207,7 @@ fun ClosedRange<YearMonth>.step(years: Int, months: Int) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepYear")
-fun ClosedRange<Year>.step(step: Int) =
-	YearProgression.fromClosedRange(this, step)
+fun ClosedRange<Year>.step(step: Int) = YearProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -238,8 +215,7 @@ fun ClosedRange<Year>.step(step: Int) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepZonedDateTime")
-fun ClosedRange<ZonedDateTime>.step(step: Duration) =
-	ZonedDateTimeProgression.fromClosedRange(this, step)
+fun ClosedRange<ZonedDateTime>.step(step: Duration) = ZonedDateTimeProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -247,8 +223,7 @@ fun ClosedRange<ZonedDateTime>.step(step: Duration) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepZonedDateTime")
-fun ClosedRange<ZonedDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
-	ZonedDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
+fun ClosedRange<ZonedDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) = ZonedDateTimeProgression.fromClosedRange(this, stepSize, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -256,8 +231,7 @@ fun ClosedRange<ZonedDateTime>.step(stepSize: Long, stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepZonedDateTime")
-fun ClosedRange<ZonedDateTime>.step(stepUnit: TemporalUnit) =
-	ZonedDateTimeProgression.fromClosedRange(this, stepUnit)
+fun ClosedRange<ZonedDateTime>.step(stepUnit: TemporalUnit) = ZonedDateTimeProgression.fromClosedRange(this, stepUnit)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -265,8 +239,7 @@ fun ClosedRange<ZonedDateTime>.step(stepUnit: TemporalUnit) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepZoneOffset")
-fun ClosedRange<ZoneOffset>.step(step: Int) =
-	ZoneOffsetProgression.fromClosedRange(this, step)
+fun ClosedRange<ZoneOffset>.step(step: Int) = ZoneOffsetProgression.fromClosedRange(this, step)
 
 /**
  * Create an [Iterable] from [ClosedRange.start] to [ClosedRange.endInclusive], with each
@@ -274,5 +247,4 @@ fun ClosedRange<ZoneOffset>.step(step: Int) =
  * @throws [NoSuchElementException] If the range is empty.
  */
 @JvmName("stepZoneOffset")
-fun ClosedRange<ZoneOffset>.step(hours: Int, seconds: Int) =
-	ZoneOffsetProgression.fromClosedRange(this, (hours * ChronoUnit.HOURS.duration.seconds).toInt() + seconds)
+fun ClosedRange<ZoneOffset>.step(hours: Int, seconds: Int) = ZoneOffsetProgression.fromClosedRange(this, (hours * ChronoUnit.HOURS.duration.seconds).toInt() + seconds)

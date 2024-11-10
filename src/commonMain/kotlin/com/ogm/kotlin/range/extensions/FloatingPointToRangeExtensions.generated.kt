@@ -2,7 +2,6 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 fun ClosedRange<Double>.asDoubleRange(): ClosedFloatingPointRange<Double> = if (this is ClosedFloatingPointRange<*>) {
 	@Suppress("UNCHECKED_CAST")
 	this as ClosedFloatingPointRange<Double>
@@ -22,8 +21,8 @@ fun OpenEndRange<Double>.asOpenDoubleRange(): ClosedFloatingPointRange<Double> =
 
 @JvmName("toDoubleClosedRange")
 fun OpenEndRange<Double>.toClosedRange(): ClosedFloatingPointRange<Double> = if (this is ClosedRange<*>) {
-	 @Suppress("UNCHECKED_CAST")
-	 (this as ClosedRange<Double>).asDoubleRange()
+	@Suppress("UNCHECKED_CAST")
+	(this as ClosedRange<Double>).asDoubleRange()
 } else {
 	start..calculateEndInclusive()
 }
@@ -47,8 +46,8 @@ fun OpenEndRange<Float>.asOpenFloatRange(): ClosedFloatingPointRange<Float> = to
 
 @JvmName("toFloatClosedRange")
 fun OpenEndRange<Float>.toClosedRange(): ClosedFloatingPointRange<Float> = if (this is ClosedRange<*>) {
-	 @Suppress("UNCHECKED_CAST")
-	 (this as ClosedRange<Float>).asFloatRange()
+	@Suppress("UNCHECKED_CAST")
+	(this as ClosedRange<Float>).asFloatRange()
 } else {
 	start..calculateEndInclusive()
 }

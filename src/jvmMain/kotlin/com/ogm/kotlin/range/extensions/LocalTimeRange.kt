@@ -3,12 +3,10 @@ package com.ogm.kotlin.range.extensions
 import java.time.Duration
 import java.time.LocalTime
 
-data class LocalTimeRange(
-	override val start: LocalTime,
-	override val endInclusive: LocalTime,
-) : ClosedRange<LocalTime>, Iterable<LocalTime> {
-	override fun iterator(): Iterator<LocalTime> =
-		LocalTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
+data class LocalTimeRange(override val start: LocalTime, override val endInclusive: LocalTime) :
+	ClosedRange<LocalTime>,
+	Iterable<LocalTime> {
+	override fun iterator(): Iterator<LocalTime> = LocalTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

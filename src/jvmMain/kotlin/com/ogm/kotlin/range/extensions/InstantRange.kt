@@ -3,12 +3,10 @@ package com.ogm.kotlin.range.extensions
 import java.time.Duration
 import java.time.Instant
 
-data class InstantRange(
-	override val start: Instant,
-	override val endInclusive: Instant,
-) : ClosedRange<Instant>, Iterable<Instant> {
-	override fun iterator(): Iterator<Instant> =
-		InstantProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
+data class InstantRange(override val start: Instant, override val endInclusive: Instant) :
+	ClosedRange<Instant>,
+	Iterable<Instant> {
+	override fun iterator(): Iterator<Instant> = InstantProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

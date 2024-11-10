@@ -3,16 +3,13 @@ package com.ogm.kotlin.range.extensions
 import java.time.MonthDay
 import java.time.Period
 
-class MonthDayProgression private constructor(
-	start: MonthDay,
-	endInclusive: MonthDay,
-	normalizedStep: Period,
-) : AbstractProgression<MonthDay, PeriodComparableWrapper>(
-	start,
-	endInclusive,
-	normalizedStep.normalized().toComparable(),
-	PeriodComparableWrapper.ZERO,
-) {
+class MonthDayProgression private constructor(start: MonthDay, endInclusive: MonthDay, normalizedStep: Period) :
+	AbstractProgression<MonthDay, PeriodComparableWrapper>(
+		start,
+		endInclusive,
+		normalizedStep.normalized().toComparable(),
+		PeriodComparableWrapper.ZERO,
+	) {
 	private val calculatedProgression: List<MonthDay> by lazy {
 		val period = step.toPeriod()
 		val periodMonths = period.toTotalMonths()
@@ -41,16 +38,12 @@ class MonthDayProgression private constructor(
 	override fun iterator() = calculatedProgression.iterator()
 
 	companion object {
-		fun fromClosedRange(rangeStart: MonthDay, rangeEnd: MonthDay, months: Int, days: Int) =
-			fromClosedRange(rangeStart, rangeEnd, Period.of(0, months, days))
+		fun fromClosedRange(rangeStart: MonthDay, rangeEnd: MonthDay, months: Int, days: Int) = fromClosedRange(rangeStart, rangeEnd, Period.of(0, months, days))
 
-		fun fromClosedRange(rangeStart: MonthDay, rangeEnd: MonthDay, step: Period) =
-			MonthDayProgression(rangeStart, rangeEnd, step)
+		fun fromClosedRange(rangeStart: MonthDay, rangeEnd: MonthDay, step: Period) = MonthDayProgression(rangeStart, rangeEnd, step)
 
-		fun fromClosedRange(range: ClosedRange<MonthDay>, step: Period) =
-			fromClosedRange(range.start, range.endInclusive, step)
+		fun fromClosedRange(range: ClosedRange<MonthDay>, step: Period) = fromClosedRange(range.start, range.endInclusive, step)
 
-		fun fromClosedRange(range: ClosedRange<MonthDay>, months: Int, days: Int) =
-			fromClosedRange(range.start, range.endInclusive, months, days)
+		fun fromClosedRange(range: ClosedRange<MonthDay>, months: Int, days: Int) = fromClosedRange(range.start, range.endInclusive, months, days)
 	}
 }

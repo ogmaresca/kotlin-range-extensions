@@ -4,10 +4,9 @@ import java.time.Duration
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 
-data class OffsetDateTimeRange(
-	override val start: OffsetDateTime,
-	override val endInclusive: OffsetDateTime,
-) : ClosedRange<OffsetDateTime>, Iterable<OffsetDateTime> {
+data class OffsetDateTimeRange(override val start: OffsetDateTime, override val endInclusive: OffsetDateTime) :
+	ClosedRange<OffsetDateTime>,
+	Iterable<OffsetDateTime> {
 	override fun contains(value: OffsetDateTime): Boolean {
 		val comparator = OffsetDateTime.timeLineOrder()
 		return comparator.compare(start, value) <= 0 &&
@@ -16,8 +15,7 @@ data class OffsetDateTimeRange(
 
 	override fun isEmpty(): Boolean = OffsetDateTime.timeLineOrder().compare(start, endInclusive) <= 0
 
-	override fun iterator(): Iterator<OffsetDateTime> =
-		OffsetDateTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
+	override fun iterator(): Iterator<OffsetDateTime> = OffsetDateTimeProgression.fromClosedRange(this, Duration.ofSeconds(1)).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

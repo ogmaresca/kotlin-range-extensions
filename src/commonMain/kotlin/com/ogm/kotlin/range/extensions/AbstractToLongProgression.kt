@@ -1,13 +1,6 @@
 package com.ogm.kotlin.range.extensions
 
-abstract class AbstractToLongProgression<T : Comparable<T>, TStep : Comparable<TStep>> protected constructor(
-	start: T,
-	endInclusive: T,
-	step: TStep,
-	longStep: Long,
-	zeroStep: TStep,
-	private val converter: AbstractToLongProgressionConverter<T>,
-) : AbstractProgression<T, TStep>(start, endInclusive, step, zeroStep) {
+abstract class AbstractToLongProgression<T : Comparable<T>, TStep : Comparable<TStep>> protected constructor(start: T, endInclusive: T, step: TStep, longStep: Long, zeroStep: TStep, private val converter: AbstractToLongProgressionConverter<T>) : AbstractProgression<T, TStep>(start, endInclusive, step, zeroStep) {
 	private val longProgression =
 		(converter.toLong(start)..converter.toLong(endInclusive)).step(longStep)
 

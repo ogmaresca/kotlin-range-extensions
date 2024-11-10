@@ -8,9 +8,9 @@ import java.time.chrono.ChronoPeriod
 
 @JvmInline
 value class PeriodComparableWrapper internal constructor(private val period: Period) :
-	Comparable<PeriodComparableWrapper>, ChronoPeriod by period {
-	override fun compareTo(other: PeriodComparableWrapper): Int =
-		period.toMaxTotalDays().compareTo(other.period.toMaxTotalDays())
+	Comparable<PeriodComparableWrapper>,
+	ChronoPeriod by period {
+	override fun compareTo(other: PeriodComparableWrapper): Int = period.toMaxTotalDays().compareTo(other.period.toMaxTotalDays())
 
 	override fun toString() = period.toString()
 

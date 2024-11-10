@@ -12,7 +12,7 @@ import kotlin.random.nextUInt
 fun Random.nextShort(range: ClosedRange<Short>): Short {
 	if (range is OpenEndRange<*>) {
 		@Suppress("UNCHECKED_CAST")
-	    return nextShortExclusive(range as OpenEndRange<Short>)
+		return nextShortExclusive(range as OpenEndRange<Short>)
 	}
 
 	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
@@ -44,8 +44,7 @@ fun ClosedRange<Short>.random(random: Random = Random.Default): Short = try {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullClosedShort")
-fun ClosedRange<Short>.randomOrNull(random: Random = Random.Default): Short? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Short>.randomOrNull(random: Random = Random.Default): Short? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
@@ -63,8 +62,7 @@ fun OpenEndRange<Short>.randomExclusive(random: Random = Random.Default): Short 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOpenEndShort")
-fun OpenEndRange<Short>.randomOrNullExclusive(random: Random = Random.Default): Short? =
-	takeUnless { it.isEmpty() }?.randomExclusive(random)
+fun OpenEndRange<Short>.randomOrNullExclusive(random: Random = Random.Default): Short? = takeUnless { it.isEmpty() }?.randomExclusive(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -73,7 +71,7 @@ fun OpenEndRange<Short>.randomOrNullExclusive(random: Random = Random.Default): 
 fun Random.nextUShort(range: ClosedRange<UShort>): UShort {
 	if (range is OpenEndRange<*>) {
 		@Suppress("UNCHECKED_CAST")
-	    return nextUShortExclusive(range as OpenEndRange<UShort>)
+		return nextUShortExclusive(range as OpenEndRange<UShort>)
 	}
 
 	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
@@ -105,8 +103,7 @@ fun ClosedRange<UShort>.random(random: Random = Random.Default): UShort = try {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullClosedUShort")
-fun ClosedRange<UShort>.randomOrNull(random: Random = Random.Default): UShort? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<UShort>.randomOrNull(random: Random = Random.Default): UShort? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
@@ -124,8 +121,7 @@ fun OpenEndRange<UShort>.randomExclusive(random: Random = Random.Default): UShor
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOpenEndUShort")
-fun OpenEndRange<UShort>.randomOrNullExclusive(random: Random = Random.Default): UShort? =
-	takeUnless { it.isEmpty() }?.randomExclusive(random)
+fun OpenEndRange<UShort>.randomOrNullExclusive(random: Random = Random.Default): UShort? = takeUnless { it.isEmpty() }?.randomExclusive(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -134,7 +130,7 @@ fun OpenEndRange<UShort>.randomOrNullExclusive(random: Random = Random.Default):
 fun Random.nextByte(range: ClosedRange<Byte>): Byte {
 	if (range is OpenEndRange<*>) {
 		@Suppress("UNCHECKED_CAST")
-	    return nextByteExclusive(range as OpenEndRange<Byte>)
+		return nextByteExclusive(range as OpenEndRange<Byte>)
 	}
 
 	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
@@ -166,8 +162,7 @@ fun ClosedRange<Byte>.random(random: Random = Random.Default): Byte = try {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullClosedByte")
-fun ClosedRange<Byte>.randomOrNull(random: Random = Random.Default): Byte? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Byte>.randomOrNull(random: Random = Random.Default): Byte? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
@@ -185,8 +180,7 @@ fun OpenEndRange<Byte>.randomExclusive(random: Random = Random.Default): Byte = 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOpenEndByte")
-fun OpenEndRange<Byte>.randomOrNullExclusive(random: Random = Random.Default): Byte? =
-	takeUnless { it.isEmpty() }?.randomExclusive(random)
+fun OpenEndRange<Byte>.randomOrNullExclusive(random: Random = Random.Default): Byte? = takeUnless { it.isEmpty() }?.randomExclusive(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -195,7 +189,7 @@ fun OpenEndRange<Byte>.randomOrNullExclusive(random: Random = Random.Default): B
 fun Random.nextUByte(range: ClosedRange<UByte>): UByte {
 	if (range is OpenEndRange<*>) {
 		@Suppress("UNCHECKED_CAST")
-	    return nextUByteExclusive(range as OpenEndRange<UByte>)
+		return nextUByteExclusive(range as OpenEndRange<UByte>)
 	}
 
 	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
@@ -227,8 +221,7 @@ fun ClosedRange<UByte>.random(random: Random = Random.Default): UByte = try {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullClosedUByte")
-fun ClosedRange<UByte>.randomOrNull(random: Random = Random.Default): UByte? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<UByte>.randomOrNull(random: Random = Random.Default): UByte? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
@@ -246,8 +239,7 @@ fun OpenEndRange<UByte>.randomExclusive(random: Random = Random.Default): UByte 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOpenEndUByte")
-fun OpenEndRange<UByte>.randomOrNullExclusive(random: Random = Random.Default): UByte? =
-	takeUnless { it.isEmpty() }?.randomExclusive(random)
+fun OpenEndRange<UByte>.randomOrNullExclusive(random: Random = Random.Default): UByte? = takeUnless { it.isEmpty() }?.randomExclusive(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -256,7 +248,7 @@ fun OpenEndRange<UByte>.randomOrNullExclusive(random: Random = Random.Default): 
 fun Random.nextDouble(range: ClosedRange<Double>): Double {
 	if (range is OpenEndRange<*>) {
 		@Suppress("UNCHECKED_CAST")
-	    return nextDoubleExclusive(range as OpenEndRange<Double>)
+		return nextDoubleExclusive(range as OpenEndRange<Double>)
 	}
 
 	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
@@ -288,8 +280,7 @@ fun ClosedRange<Double>.random(random: Random = Random.Default): Double = try {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullClosedDouble")
-fun ClosedRange<Double>.randomOrNull(random: Random = Random.Default): Double? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Double>.randomOrNull(random: Random = Random.Default): Double? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
@@ -307,8 +298,7 @@ fun OpenEndRange<Double>.randomExclusive(random: Random = Random.Default): Doubl
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOpenEndDouble")
-fun OpenEndRange<Double>.randomOrNullExclusive(random: Random = Random.Default): Double? =
-	takeUnless { it.isEmpty() }?.randomExclusive(random)
+fun OpenEndRange<Double>.randomOrNullExclusive(random: Random = Random.Default): Double? = takeUnless { it.isEmpty() }?.randomExclusive(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -317,7 +307,7 @@ fun OpenEndRange<Double>.randomOrNullExclusive(random: Random = Random.Default):
 fun Random.nextFloat(range: ClosedRange<Float>): Float {
 	if (range is OpenEndRange<*>) {
 		@Suppress("UNCHECKED_CAST")
-	    return nextFloatExclusive(range as OpenEndRange<Float>)
+		return nextFloatExclusive(range as OpenEndRange<Float>)
 	}
 
 	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
@@ -349,8 +339,7 @@ fun ClosedRange<Float>.random(random: Random = Random.Default): Float = try {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullClosedFloat")
-fun ClosedRange<Float>.randomOrNull(random: Random = Random.Default): Float? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Float>.randomOrNull(random: Random = Random.Default): Float? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
@@ -368,8 +357,7 @@ fun OpenEndRange<Float>.randomExclusive(random: Random = Random.Default): Float 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOpenEndFloat")
-fun OpenEndRange<Float>.randomOrNullExclusive(random: Random = Random.Default): Float? =
-	takeUnless { it.isEmpty() }?.randomExclusive(random)
+fun OpenEndRange<Float>.randomOrNullExclusive(random: Random = Random.Default): Float? = takeUnless { it.isEmpty() }?.randomExclusive(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -378,7 +366,7 @@ fun OpenEndRange<Float>.randomOrNullExclusive(random: Random = Random.Default): 
 fun Random.nextChar(range: ClosedRange<Char>): Char {
 	if (range is OpenEndRange<*>) {
 		@Suppress("UNCHECKED_CAST")
-	    return nextCharExclusive(range as OpenEndRange<Char>)
+		return nextCharExclusive(range as OpenEndRange<Char>)
 	}
 
 	require(!range.isEmpty()) { "Cannot get random in empty range: $range" }
@@ -410,8 +398,7 @@ fun ClosedRange<Char>.random(random: Random = Random.Default): Char = try {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullClosedChar")
-fun ClosedRange<Char>.randomOrNull(random: Random = Random.Default): Char? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Char>.randomOrNull(random: Random = Random.Default): Char? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [OpenEndRange.start] and [OpenEndRange.endExclusive], exclusive.
@@ -429,5 +416,4 @@ fun OpenEndRange<Char>.randomExclusive(random: Random = Random.Default): Char = 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOpenEndChar")
-fun OpenEndRange<Char>.randomOrNullExclusive(random: Random = Random.Default): Char? =
-	takeUnless { it.isEmpty() }?.randomExclusive(random)
+fun OpenEndRange<Char>.randomOrNullExclusive(random: Random = Random.Default): Char? = takeUnless { it.isEmpty() }?.randomExclusive(random)

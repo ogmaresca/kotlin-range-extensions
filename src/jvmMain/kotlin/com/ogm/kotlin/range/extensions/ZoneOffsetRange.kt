@@ -2,12 +2,10 @@ package com.ogm.kotlin.range.extensions
 
 import java.time.ZoneOffset
 
-data class ZoneOffsetRange(
-	override val start: ZoneOffset,
-	override val endInclusive: ZoneOffset,
-) : ClosedRange<ZoneOffset>, Iterable<ZoneOffset> {
-	override fun iterator(): Iterator<ZoneOffset> =
-		ZoneOffsetProgression.fromClosedRange(this, 1).iterator()
+data class ZoneOffsetRange(override val start: ZoneOffset, override val endInclusive: ZoneOffset) :
+	ClosedRange<ZoneOffset>,
+	Iterable<ZoneOffset> {
+	override fun iterator(): Iterator<ZoneOffset> = ZoneOffsetProgression.fromClosedRange(this, 1).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

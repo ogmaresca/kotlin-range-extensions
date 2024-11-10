@@ -2,7 +2,6 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 /**
  * Convert this [ClosedRange] to a range where [ClosedRange.start] is less than or equal to [ClosedRange.endInclusive]
  */

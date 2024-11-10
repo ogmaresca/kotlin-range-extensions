@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 repositories {
 	gradlePluginPortal()
 	mavenCentral()
@@ -5,8 +7,8 @@ repositories {
 
 plugins {
 	kotlin("multiplatform") version "kotlinVersion"
-	id("com.github.spotbugs") version "spotbugsVersion"
-	id("com.diffplug.spotless") version "spotlessVersion"
+	id("com.github.spotbugs") version "spotbugsVersion" apply true
+	id("com.diffplug.spotless") version "spotlessVersion" apply true
 }
 
 apply(plugin = "com.github.spotbugs")
@@ -20,20 +22,24 @@ repositories {
 }
 
 kotlin {
+	@OptIn(ExperimentalKotlinGradlePluginApi::class)
+	compilerOptions {
+		allWarningsAsErrors = true
+		freeCompilerArgs =
+			listOf(
+				"-Xjsr305=warn",
+				// "-Xemit-java-type-annotations",
+				"-java-parameters",
+				"-Xjvm-default=all-compatibility",
+			)
+		apiVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_1_9
+		languageVersion = org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0
+	}
+
 	jvm {
-		compilations.all {
-			kotlinOptions {
-				allWarningsAsErrors = true
-				freeCompilerArgs = listOf(
-					"-Xjsr305=warn",
-					// "-Xemit-java-type-annotations",
-					"-java-parameters",
-					"-Xjvm-default=all-compatibility",
-				)
-				apiVersion = "1.9"
-				languageVersion = "1.9"
-				jvmTarget = "1.8"
-			}
+		@OptIn(ExperimentalKotlinGradlePluginApi::class)
+		compilerOptions {
+			jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8
 		}
 	}
 

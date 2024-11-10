@@ -99,8 +99,7 @@ fun ClosedRange<BigInteger>.random(random: Random = Random.Default): BigInteger 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullBigInteger")
-fun ClosedRange<BigInteger>.randomOrNull(random: Random = Random.Default): BigInteger? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<BigInteger>.randomOrNull(random: Random = Random.Default): BigInteger? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -114,8 +113,7 @@ fun ClosedRange<BigDecimal>.random(random: Random = Random.Default): BigDecimal 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullBigDecimal")
-fun ClosedRange<BigDecimal>.randomOrNull(random: Random = Random.Default): BigDecimal? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<BigDecimal>.randomOrNull(random: Random = Random.Default): BigDecimal? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -129,24 +127,21 @@ fun ClosedRange<Duration>.random(random: Random = Random.Default): Duration = ra
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullDuration")
-fun ClosedRange<Duration>.randomOrNull(random: Random = Random.Default): Duration? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Duration>.randomOrNull(random: Random = Random.Default): Duration? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
  * @throws [IllegalStateException] If the range is empty.
  */
 @JvmName("randomDuration")
-fun ClosedRange<Duration>.random(unit: TemporalUnit, random: Random = Random.Default): Duration =
-	random.nextDuration(this, unit)
+fun ClosedRange<Duration>.random(unit: TemporalUnit, random: Random = Random.Default): Duration = random.nextDuration(this, unit)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullDuration")
-fun ClosedRange<Duration>.randomOrNull(unit: TemporalUnit, random: Random = Random.Default): Duration? =
-	takeUnless { it.isEmpty() }?.random(unit, random)
+fun ClosedRange<Duration>.randomOrNull(unit: TemporalUnit, random: Random = Random.Default): Duration? = takeUnless { it.isEmpty() }?.random(unit, random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -165,8 +160,7 @@ fun ClosedRange<Instant>.random(random: Random = Random.Default): Instant {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullInstant")
-fun ClosedRange<Instant>.randomOrNull(random: Random = Random.Default): Instant? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Instant>.randomOrNull(random: Random = Random.Default): Instant? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -183,8 +177,7 @@ fun ClosedRange<LocalDate>.random(random: Random = Random.Default): LocalDate {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullLocalDate")
-fun ClosedRange<LocalDate>.randomOrNull(random: Random = Random.Default): LocalDate? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<LocalDate>.randomOrNull(random: Random = Random.Default): LocalDate? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -201,8 +194,7 @@ fun ClosedRange<LocalDateTime>.random(random: Random = Random.Default): LocalDat
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullLocalDateTime")
-fun ClosedRange<LocalDateTime>.randomOrNull(random: Random = Random.Default): LocalDateTime? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<LocalDateTime>.randomOrNull(random: Random = Random.Default): LocalDateTime? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -219,8 +211,7 @@ fun ClosedRange<LocalTime>.random(random: Random = Random.Default): LocalTime {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullLocalTime")
-fun ClosedRange<LocalTime>.randomOrNull(random: Random = Random.Default): LocalTime? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<LocalTime>.randomOrNull(random: Random = Random.Default): LocalTime? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -240,8 +231,7 @@ fun ClosedRange<MonthDay>.random(random: Random = Random.Default): MonthDay {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullMonthDay")
-fun ClosedRange<MonthDay>.randomOrNull(random: Random = Random.Default): MonthDay? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<MonthDay>.randomOrNull(random: Random = Random.Default): MonthDay? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -264,8 +254,7 @@ fun ClosedRange<OffsetDateTime>.random(random: Random = Random.Default): OffsetD
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullOffsetDateTime")
-fun ClosedRange<OffsetDateTime>.randomOrNull(random: Random = Random.Default): OffsetDateTime? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<OffsetDateTime>.randomOrNull(random: Random = Random.Default): OffsetDateTime? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -291,8 +280,7 @@ fun ClosedRange<YearMonth>.random(random: Random = Random.Default): YearMonth {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullYearMonth")
-fun ClosedRange<YearMonth>.randomOrNull(random: Random = Random.Default): YearMonth? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<YearMonth>.randomOrNull(random: Random = Random.Default): YearMonth? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -309,8 +297,7 @@ fun ClosedRange<Year>.random(random: Random = Random.Default): Year {
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullYear")
-fun ClosedRange<Year>.randomOrNull(random: Random = Random.Default): Year? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<Year>.randomOrNull(random: Random = Random.Default): Year? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -333,8 +320,7 @@ fun ClosedRange<ZonedDateTime>.random(random: Random = Random.Default): ZonedDat
  * then the random value will be in the timezone of the [ClosedRange.start].
  */
 @JvmName("randomOrNullZonedDateTime")
-fun ClosedRange<ZonedDateTime>.randomOrNull(random: Random = Random.Default): ZonedDateTime? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<ZonedDateTime>.randomOrNull(random: Random = Random.Default): ZonedDateTime? = takeUnless { it.isEmpty() }?.random(random)
 
 /**
  * Create a random value between [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
@@ -351,5 +337,4 @@ fun ClosedRange<ZoneOffset>.random(random: Random = Random.Default): ZoneOffset 
  * If the range is empty, then null will be returned instead.
  */
 @JvmName("randomOrNullZoneOffset")
-fun ClosedRange<ZoneOffset>.randomOrNull(random: Random = Random.Default): ZoneOffset? =
-	takeUnless { it.isEmpty() }?.random(random)
+fun ClosedRange<ZoneOffset>.randomOrNull(random: Random = Random.Default): ZoneOffset? = takeUnless { it.isEmpty() }?.random(random)

@@ -1,0 +1,46 @@
+TYPE=Long,ULong,Int,UInt,Double,Float,Char
+CLOSED_RANGE_TYPE=LongRange,ULongRange,IntRange,UIntRange,ClosedFloatingPointRange<Double>,ClosedFloatingPointRange<Float>,CharRange
+STEP=1L,1UL,1,1U,1.0,1.0F,1
+/**
+ * Convert this [OpenEndRange] to be in ascending order.
+ * Ex: convert `10..<1` to `2..<11`
+ */
+@JvmName("toAscendingOrder${TYPE}OpenEndRange")
+fun OpenEndRange<${TYPE}>.toAscendingOrder(): OpenEndRange<${TYPE}> = if (descendingOrderRange) {
+	(endExclusive + ${STEP})..<(start + ${STEP})
+} else {
+	this
+}
+
+/**
+ * Convert this [${CLOSED_RANGE_TYPE}] to be in ascending order.
+ * Ex: convert `10..1` to `1..10`
+ */
+@JvmName("toAscendingOrder${TYPE}ClosedRange")
+fun ${CLOSED_RANGE_TYPE}.toAscendingOrder(): ${CLOSED_RANGE_TYPE} = if (descendingOrder) {
+	endInclusive..start
+} else {
+	this
+}
+
+/**
+ * Convert this [OpenEndRange] to be in descending order.
+ * Ex: convert `1..<10` to `9..<0`
+ */
+@JvmName("toDescendingOrder${TYPE}OpenEndRange")
+fun OpenEndRange<${TYPE}>.toDescendingOrder(): OpenEndRange<${TYPE}> = if (ascendingOrderRange) {
+	(endExclusive - ${STEP})..<(start - ${STEP})
+} else {
+	this
+}
+
+/**
+ * Convert this [${CLOSED_RANGE_TYPE}] to be in descending order.
+ * Ex: convert `1..10` to `10..1`
+ */
+@JvmName("toDescendingOrder${TYPE}ClosedRange")
+fun ${CLOSED_RANGE_TYPE}.toDescendingOrder(): ${CLOSED_RANGE_TYPE} = if (ascendingOrder) {
+	endInclusive..start
+} else {
+	this
+}

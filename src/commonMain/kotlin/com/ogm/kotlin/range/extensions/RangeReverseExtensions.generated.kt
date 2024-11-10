@@ -2,7 +2,6 @@
 
 package com.ogm.kotlin.range.extensions
 
-
 /**
  * Reverse this [ClosedRange]
  */

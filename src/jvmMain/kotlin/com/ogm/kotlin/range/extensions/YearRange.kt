@@ -2,12 +2,10 @@ package com.ogm.kotlin.range.extensions
 
 import java.time.Year
 
-data class YearRange(
-	override val start: Year,
-	override val endInclusive: Year,
-) : ClosedRange<Year>, Iterable<Year> {
-	override fun iterator(): Iterator<Year> =
-		YearProgression.fromClosedRange(this, 1).iterator()
+data class YearRange(override val start: Year, override val endInclusive: Year) :
+	ClosedRange<Year>,
+	Iterable<Year> {
+	override fun iterator(): Iterator<Year> = YearProgression.fromClosedRange(this, 1).iterator()
 
 	override fun toString(): String = "$start..$endInclusive"
 

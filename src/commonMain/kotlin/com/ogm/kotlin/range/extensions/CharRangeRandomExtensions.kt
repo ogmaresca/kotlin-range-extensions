@@ -22,8 +22,7 @@ fun ClosedRange<Char>.randomString(length: Int, random: Random = Random.Default)
  * [ClosedRange.start] and [ClosedRange.endInclusive], inclusive.
  * If the range is empty, then null will be returned instead.
  */
-fun ClosedRange<Char>.randomStringOrNull(length: Int, random: Random = Random.Default): String? =
-	takeUnless { it.isEmpty() }?.randomString(length, random)
+fun ClosedRange<Char>.randomStringOrNull(length: Int, random: Random = Random.Default): String? = takeUnless { it.isEmpty() }?.randomString(length, random)
 
 /**
  * Create a string of length [Iterable.count], with all characters being a random character within the
